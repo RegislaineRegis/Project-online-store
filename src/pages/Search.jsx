@@ -5,6 +5,7 @@ import CategoriesButtons from '../components/CategoryButtons';
 import Loading from '../components/Loading';
 import '../styles/Buttons.css';
 import ProductCard from '../components/ProductCard';
+
 // Feito em pair programming com: Victor Reksidler, Pedro Henrique Moura, Regislaine Regis, Jaziel Silva, Débora Serra
 
 export default class Search extends Component {
