@@ -1,0 +1,23 @@
+.buttons-sect {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px auto;
+  width: 90%;
+}
+
+.cat-button {
+  background-color: var(--dark-blue);
+  color: var(--light-gray);
+  cursor: pointer;
+  font-weight: 600;
+  margin: 2px;
+  padding: 8px;
+}
+
+.cat-button:hover {
+  background-color: var(--light-gray);
+  color: var(--dark-blue);
+  padding: 10px;
+}

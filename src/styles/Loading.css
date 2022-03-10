@@ -1,0 +1,28 @@
+.load-sect {
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  margin: auto;
+  padding: 15px;
+  width: 30%;
+}
+
+@keyframes spin {
+
+  from { transform: rotate(0deg); }
+
+  to { transform: rotate(360deg); }
+}
+
+.loading {
+  animation: 1.5s linear infinite spin;
+  border: 12px solid var(--light-gray);
+  border-bottom-color: var(--light-blue);
+  border-radius: 50%;
+  height: 30px;
+  margin: 2% auto 5%;
+  width: 30px;
+}
