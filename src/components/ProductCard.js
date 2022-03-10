@@ -21,11 +21,11 @@ ProductCard.propTypes = {
   product: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
-    price: PropTypes.string,
+    price: PropTypes.number,
     thumbnail: PropTypes.string,
     shipping: PropTypes.shape({
-      freeShipping: PropTypes.bool,
-    })
+      free_shipping: PropTypes.bool,
+    }),
   }).isRequired,
 };
 
