@@ -1,4 +1,4 @@
-categorias:
+**CATEGORIAS:
 
 /* data retorna uma array no formato:
   [
