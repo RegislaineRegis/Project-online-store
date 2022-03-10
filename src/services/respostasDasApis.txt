@@ -9,7 +9,7 @@ categorias:
   ]
   */
 
-pesquisa de produtos:
+** PESQUISA DE PRODUTOS:
 
 /*
   data retorna no formato:
