@@ -24,8 +24,8 @@ ProductCard.propTypes = {
     price: PropTypes.string,
     thumbnail: PropTypes.string,
     shipping: PropTypes.shape({
-      freeShipping: PropTypes.bool,
-    })
+      free_shipping: PropTypes.bool,
+    }),
   }).isRequired,
 };
 
