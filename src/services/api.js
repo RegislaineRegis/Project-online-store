@@ -576,8 +576,7 @@ export async function getProductsDetails(productId) {
   const ENDPOINT_PRODUCT = `https://api.mercadolibre.com/items/${productId}`;
   const response = await fetch(ENDPOINT_PRODUCT);
   const data = await response.json();
-  /**
-   * data retorna no formato:
+  /**data retorna no formato:
    * quando não encontrado:
    *  {
         "error": "resource not found",
