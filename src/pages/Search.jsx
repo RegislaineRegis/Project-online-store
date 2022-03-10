@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+// Feito em pair programming com: Victor Reksidler e Pedro Henrique Moura
 export default class Search extends Component {
   render() {
     return (
