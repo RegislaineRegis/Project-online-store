@@ -559,7 +559,7 @@ pesquisa de produtos:
 }
   */
 
-detalhes dos produtos:
+** DETALHE DOS PRODUTOS:
 
  /**data retorna no formato:
    * quando não encontrado:
