@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// requisito 15 - regislaine
 
 class ProductCard extends React.Component {
   render() {
@@ -11,7 +12,7 @@ class ProductCard extends React.Component {
         <h2>{title}</h2>
         <img src={ thumbnail } alt={ title } />
         <p>{`R$ ${price}`}</p>
-        {freeShipping && <div data-testid="free-shipping">Frete grátis</div >} 
+        {freeShipping && <p data-testid="free-shipping">Frete grátis</p>} 
       </section>
     );
   }
