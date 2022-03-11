@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { FaShoppingCart } from 'react-icons/fa';
 import * as api from '../services/api';
+import * as shoppinCart from '../services/saveShoppingCart';
 import Loading from '../components/Loading';
 
 export default class ProductDetail extends Component {
@@ -22,6 +25,7 @@ export default class ProductDetail extends Component {
       dateCreated: '',
       lastUpdated: '',
       loading: true,
+      quantity: 1,
     };
   }
 
@@ -29,6 +33,11 @@ export default class ProductDetail extends Component {
     // console.log(this.props)
     const { match: { params: { id } } } = this.props;
     this.getProduct(id);
+  }
+
+  handleClick = () => {
+    const { title, id, thumbnail, price, quantity } = this.state;
+    shoppinCart.addItem({ title, id, thumbnail, price, quantity });
   }
 
   getProduct = async (id) => {
@@ -73,6 +82,12 @@ export default class ProductDetail extends Component {
     const updated = lastUpdated.split('T')[0].split('-').reverse().join('/');
     const product = (
       <section>
+        <Link
+          to="/shopping-cart"
+          data-testid="shopping-cart-button"
+        >
+          <FaShoppingCart className="shopping-cart-icon" />
+        </Link>
         <h1 data-testid="product-detail-name">{title}</h1>
         <p>{`Condição: ${condition}`}</p>
         <p>{`Criado em: ${created}`}</p>
@@ -86,6 +101,13 @@ export default class ProductDetail extends Component {
         <h3>
           { `Preço: R$ ${price.toFixed(2).replace(/\./gm, ',')} - Status: ${status}` }
         </h3>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ this.handleClick }
+        >
+          Adicionar ao Carrinho
+        </button>
         {acceptsMercadopago && <img src="https://selectra.net.br/sites/selectra.net.br/files/styles/article_hero/public/images/mercado-pago-825x293.png?itok=rla5wE_U" alt="Aceita MercadoPago" />}
         {freeShipping && <p>Frete Grátis</p>}
         <p>{warranty}</p>
