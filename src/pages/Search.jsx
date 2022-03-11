@@ -5,6 +5,7 @@ import CategoriesButtons from '../components/CategoryButtons';
 import Loading from '../components/Loading';
 import '../styles/Buttons.css';
 import ProductCard from '../components/ProductCard';
+import { FaShoppingCart } from 'react-icons/fa';
 
 // Feito em pair programming com: Victor Reksidler, Pedro Henrique Moura, Regislaine Regis, Jaziel Silva, Débora Serra
 
@@ -93,7 +94,7 @@ export default class Search extends Component {
           to="/shopping-cart"
           data-testid="shopping-cart-button"
         >
-          Carrinho de Compras
+          <FaShoppingCart className="shopping-cart-icon" />
         </Link>
         {!loading && products.length > 0 && (
           <section>
