@@ -12,7 +12,7 @@ class ProductCard extends React.Component {
         <h2>{title}</h2>
         <img src={ thumbnail } alt={ title } />
         <p>{`R$ ${price}`}</p>
-        {freeShipping && <p data-testid="free-shipping">Frete grátis</p>} 
+        {freeShipping && <p data-testid="free-shipping">Frete grátis</p>}
       </section>
     );
   }
