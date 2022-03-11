@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import Loading from '../components/Loading';
 
@@ -7,7 +8,8 @@ export default class ProductDetail extends Component {
     super();
     this.state = {
       id: '',
-      title: '', 
+      title: '',
+      thumbnail: '',
       price: 0,
       availableQuantity: 0,
       condition: '',
@@ -32,6 +34,7 @@ export default class ProductDetail extends Component {
   getProduct = async (id) => {
     const response = await api.getProductsDetails(id);
     const { title,
+      thumbnail,
       price,
       available_quantity: availableQuantity,
       condition,
@@ -46,6 +49,7 @@ export default class ProductDetail extends Component {
 
     this.setState({ id,
       title,
+      thumbnail,
       price,
       availableQuantity,
       condition,
@@ -79,21 +83,23 @@ export default class ProductDetail extends Component {
           ))}
         </section>
         <p>{ `Quantidade disponível: ${availableQuantity}` }</p>
-        <h3>{ `Preço: R$ ${price.toFixed(2).replace(/\./gm, ',')} - Status: ${status}` }</h3>
+        <h3>
+          { `Preço: R$ ${price.toFixed(2).replace(/\./gm, ',')} - Status: ${status}` }
+        </h3>
         {acceptsMercadopago && <img src="https://selectra.net.br/sites/selectra.net.br/files/styles/article_hero/public/images/mercado-pago-825x293.png?itok=rla5wE_U" alt="Aceita MercadoPago" />}
         {freeShipping && <p>Frete Grátis</p>}
         <p>{warranty}</p>
         <h3>Especificações técnicas: </h3>
         <ul>
           {attributes.map((attr) => (
-            <li key={attr.name}>
+            <li key={ attr.name }>
               <h3>{attr.name}</h3>
               <p>{attr.value_name}</p>
             </li>
           ))}
         </ul>
       </section>
-      );
+    );
 
     return (
       <section>
@@ -102,3 +108,11 @@ export default class ProductDetail extends Component {
     );
   }
 }
+
+ProductDetail.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+};
