@@ -7,7 +7,7 @@ export default class ProductDetail extends Component {
     super();
     this.state = {
       id: '',
-      title:'', 
+      title: '', 
       price: 0, 
       availableQuantity: 0,
       condition: '',
