@@ -17,9 +17,14 @@ export const addItem = (item) => {
 
 export const updateItem = (item) => {
   const cart = JSON.parse(localStorage.getItem(CART_KEY));
-  const newCart = cart.map((prod) => prod.id === item.id ? { ...prod, ...item } : prod);
+  const newCart = cart.map((prod) => {
+    if (prod.id === item.id) {
+      return { ...prod, ...item };
+    } return prod;
+  });
+  console.log(newCart);
   localStorage.setItem(CART_KEY, JSON.stringify(newCart));
-}
+};
 
 export const removeItem = (item) => {
   const cart = JSON.parse(localStorage.getItem(CART_KEY));
