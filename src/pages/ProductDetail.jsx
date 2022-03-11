@@ -101,4 +101,4 @@ export default class ProductDetail extends Component {
       </section>
     );
   }
-};
+}
