@@ -5,7 +5,7 @@ export async function getCategories() {
   const response = await fetch(ENDPOINT_CATEGORIES);
   const data = await response.json();
   return data;
-}
+};
 
 export async function getProductsFromCategoryAndQuery(categoryId = '', query = '') {
   const queryCategory = categoryId ? `category=${categoryId}` : '';
@@ -15,11 +15,11 @@ export async function getProductsFromCategoryAndQuery(categoryId = '', query = '
   const response = await fetch(ENDPOINT_SEARCH);
   const data = await response.json();
   return data;
-}
+};
 
 export async function getProductsDetails(productId) {
   const ENDPOINT_PRODUCT = `https://api.mercadolibre.com/items/${productId}`;
   const response = await fetch(ENDPOINT_PRODUCT);
   const data = await response.json();
   return data;
-}
+};
