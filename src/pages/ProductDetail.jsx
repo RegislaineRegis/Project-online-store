@@ -45,8 +45,8 @@ export default class ProductDetail extends Component {
       last_updated: lastUpdated } = response;
 
     this.setState({ id,
-      title, 
-      price, 
+      title,
+      price,
       availableQuantity,
       condition,
       pictures,
