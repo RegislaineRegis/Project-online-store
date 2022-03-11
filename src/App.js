@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Search from './pages/Search';
 import ShoppingCart from './pages/ShoppingCart';
-import ProductDetail from './pages/ProductDetail'
+import ProductDetail from './pages/ProductDetail';
 
 class App extends Component {
   render() {
