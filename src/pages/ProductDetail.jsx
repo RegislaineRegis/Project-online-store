@@ -26,7 +26,7 @@ export default class ProductDetail extends Component {
   componentDidMount() {
     // console.log(this.props)
     const { match: { params: { id } } } = this.props;
-    this.getProduct(id)
+    this.getProduct(id);
   }
 
   getProduct = async (id) => {
