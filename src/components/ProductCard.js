@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import * as cartFunctions from '../services/saveShoppingCart';
 import { Link } from 'react-router-dom';
 
 // requisito 15 - regislaine
 
 class ProductCard extends React.Component {
+  onClickAddProductCart = ({ title, id, thumbnail, price }) => {
+    shoppinCart.addItem({ title, id, thumbnail, price, quantity: 1 });
+  }
+  
   render() {
     const { product } = this.props;
     const { id, title, price, thumbnail, shipping } = product;
@@ -19,6 +24,15 @@ class ProductCard extends React.Component {
         <Link data-testid="product-detail-link" to={ `/product/${id}` }>
           Detalhes do produto
         </Link>
+
+        <button
+          data-testid="product-add-to-cart"
+          type="button"
+          id={ id }
+          onClick={ () => this.onClickAddProductCart({title, id, thumbnail, price}) }
+        >
+          Adiconar produto ao carrinho
+        </button>
 
       </section>
     );
