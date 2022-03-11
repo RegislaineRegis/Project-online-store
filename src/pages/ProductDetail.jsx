@@ -31,8 +31,8 @@ export default class ProductDetail extends Component {
 
   getProduct = async (id) => {
     const response = await api.getProductsDetails(id);
-    const { title, 
-      price, 
+    const { title,
+      price,
       available_quantity: availableQuantity,
       condition,
       pictures,
