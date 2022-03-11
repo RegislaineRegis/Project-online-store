@@ -65,34 +65,34 @@ export default class ProductDetail extends Component {
       acceptsMercadopago, freeShipping, attributes, warranty, status,
       dateCreated, lastUpdated, loading } = this.state;
 
-      const created = dateCreated.split('T')[0].split('-').reverse().join('/');
-      const updated = lastUpdated.split('T')[0].split('-').reverse().join('/');
-      const product = (
-        <section>
-          <h1 data-testid="product-detail-name">{title}</h1>
-          <p>{`Condição: ${condition}`}</p>
-          <p>{`Criado em: ${created}`}</p>
-          <p>{`Ultima atualização: ${updated}`}</p>
-          <section className="imgDetails">
-            {pictures.filter((pic) => pic.url).map((pic) => (
-              <img key={ pic.id } src={ pic.url } alt={ title } />
-            ))}
-          </section>
-          <p>{ `Quantidade disponível: ${availableQuantity}` }</p>
-          <h3>{ `Preço: R$ ${price.toFixed(2).replace(/\./gm,',')} - Status: ${status}` }</h3>
-          {acceptsMercadopago && <img src="https://selectra.net.br/sites/selectra.net.br/files/styles/article_hero/public/images/mercado-pago-825x293.png?itok=rla5wE_U" alt="Aceita MercadoPago" />}
-          {freeShipping && <p>Frete Grátis</p>}
-          <p>{warranty}</p>
-          <h3>Especificações técnicas: </h3>
-          <ul>
-            {attributes.map((attr) => (
-              <li key={attr.name}>
-                <h3>{attr.name}</h3>
-                <p>{attr.value_name}</p>
-              </li>
-            ))}
-          </ul>
+    const created = dateCreated.split('T')[0].split('-').reverse().join('/');
+    const updated = lastUpdated.split('T')[0].split('-').reverse().join('/');
+    const product = (
+      <section>
+        <h1 data-testid="product-detail-name">{title}</h1>
+        <p>{`Condição: ${condition}`}</p>
+        <p>{`Criado em: ${created}`}</p>
+        <p>{`Ultima atualização: ${updated}`}</p>
+        <section className="imgDetails">
+          {pictures.filter((pic) => pic.url).map((pic) => (
+            <img key={ pic.id } src={ pic.url } alt={ title } />
+          ))}
         </section>
+        <p>{ `Quantidade disponível: ${availableQuantity}` }</p>
+        <h3>{ `Preço: R$ ${price.toFixed(2).replace(/\./gm, ',')} - Status: ${status}` }</h3>
+        {acceptsMercadopago && <img src="https://selectra.net.br/sites/selectra.net.br/files/styles/article_hero/public/images/mercado-pago-825x293.png?itok=rla5wE_U" alt="Aceita MercadoPago" />}
+        {freeShipping && <p>Frete Grátis</p>}
+        <p>{warranty}</p>
+        <h3>Especificações técnicas: </h3>
+        <ul>
+          {attributes.map((attr) => (
+            <li key={attr.name}>
+              <h3>{attr.name}</h3>
+              <p>{attr.value_name}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
       );
 
     return (
