@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { FaShoppingCart } from 'react-icons/fa';
 import * as api from '../services/api';
 import CategoriesButtons from '../components/CategoryButtons';
 import Loading from '../components/Loading';
 import '../styles/Buttons.css';
 import ProductCard from '../components/ProductCard';
-import { FaShoppingCart } from 'react-icons/fa';
 
 // Feito em pair programming com: Victor Reksidler, Pedro Henrique Moura, Regislaine Regis, Jaziel Silva, Débora Serra
 
