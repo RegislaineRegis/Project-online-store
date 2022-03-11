@@ -15,7 +15,9 @@ class ProductCard extends React.Component {
         <img src={ thumbnail } alt={ title } />
         <p>{`R$ ${price}`}</p>
         {freeShipping && <p data-testid="free-shipping">Frete grátis</p>} 
-        <Link data-testid="product-detail-link" to={`/product/${id}`}>Detalhes do produto</Link>
+        <Link data-testid="product-detail-link" to={ `/product/${id}` }>
+          Detalhes do produto
+        </Link>
       </section>
     );
   }
