@@ -40,7 +40,7 @@ export default class Search extends Component {
 
   getProducts = async (categoryId = '', query = '') => {
     const receiveProducts = await api.getProductsFromCategoryAndQuery(categoryId, query);
-    const products = receiveProducts.map((product) => {
+    const products = receiveProducts.results.map((product) => {
       const { id, title, thumbnail, price, shipping } = product;
       return { id, title, thumbnail, price, shipping };
     });
@@ -90,7 +90,7 @@ export default class Search extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <Link
-          to="/ShoppingCart"
+          to="/shopping-cart"
           data-testid="shopping-cart-button"
         >
           Carrinho de Compras
