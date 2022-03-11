@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 
+// requisito 15 - regislaine
+
 class ProductCard extends React.Component {
   render() {
     const { product } = this.props;
@@ -12,7 +14,7 @@ class ProductCard extends React.Component {
         <h2>{title}</h2>
         <img src={ thumbnail } alt={ title } />
         <p>{`R$ ${price}`}</p>
-        {freeShipping && <p>Frete grátis</p>}
+        {freeShipping && <p data-testid="free-shipping">Frete grátis</p>} 
         <Link data-testid="product-detail-link" to={`/product/${id}`}>Detalhes do produto</Link>
       </section>
     );
