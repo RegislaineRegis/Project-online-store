@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../styles/CartItems.css';
 // import * as cartFunctions from '../services/saveShoppingCart';
 
 class CartItem extends Component {
@@ -7,15 +8,15 @@ class CartItem extends Component {
     const { product: { title, thumbnail, price, quantity, id } } = this.props;
     const total = price * quantity;
     return (
-      <section id={ id }>
-        <img src={ thumbnail } alt={ title } />
-        <h3 data-testid="shopping-cart-product-name">
+      <section className="cart-item" id={ id }>
+        <img className="cart-item-img" src={ thumbnail } alt={ title } />
+        <h3 className="cart-item-title" data-testid="shopping-cart-product-name">
           { title }
         </h3>
-        <p>
+        <p className="cart-item-price">
           { `Preço unid: R$ ${price ? price.toFixed(2).replace(/\./gm, ',') : price}` }
         </p>
-        <p>
+        <p className="cart-item-total">
           {`Preço total: R$ ${total ? total.toFixed(2).replace(/\./gm, ',') : total}`}
         </p>
       </section>

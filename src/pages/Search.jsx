@@ -91,7 +91,7 @@ export default class Search extends Component {
 
   render() {
     const { categories, loading, products, sort, cartItems } = this.state;
-    const buying = cartItems.reduce((acc, item) => acc + item.quantity, 0)
+    const buying = cartItems.reduce((acc, item) => acc + item.quantity, 0);
     return (
       <div>
         <section className="buttons-sect">
@@ -147,7 +147,9 @@ export default class Search extends Component {
                 key={ product.id }
                 product={ product }
                 handleClick={ this.onClickAddProductCart }
-                className={ cartItems.some((item) => item.id === product.id) ? 'prod-card selected' : 'prod-card'}
+                className={ cartItems
+                  .some((item) => item.id === product.id)
+                  ? 'prod-card selected' : 'prod-card' }
               />
             ))}
           </section>
