@@ -55,6 +55,17 @@ export default class ShoppingCart extends Component {
     });
   }
 
+  emptyCart = () => {
+    const { products } = this.state;
+    this.setState({ loading: true }, () => {
+      products.forEach((prod) => cartFunctions.removeItem(prod));
+      this.setState({
+        products: cartFunctions.getShoppingCart(),
+        loading: false,
+      })
+    })
+  }
+
   render() {
     const { products, loading } = this.state;
     const total = products
@@ -64,8 +75,7 @@ export default class ShoppingCart extends Component {
       <section>
         <Link to="/"> HOME </Link>
         {loading && <Loading />}
-        {(
-          products.length === 0 ? (
+        {( !loading && products.length === 0 ? (
             <p data-testid="shopping-cart-empty-message">
               Seu carrinho está vazio
             </p>
@@ -103,6 +113,9 @@ export default class ShoppingCart extends Component {
               ))}
               <p>{`Valor final: R$ ${newTotal}`}</p>
               <button type="button">Finalizar compra</button>
+              <button type="button" onClick={ this.emptyCart }>
+                Esvaziar carrinho
+              </button>
             </section>
           )
         )}
