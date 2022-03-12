@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 // import * as cartFunctions from '../services/saveShoppingCart';
 
 class CartItem extends Component {
-
   render() {
     const { product: { title, thumbnail, price, quantity, id } } = this.props;
     const total = price * quantity;

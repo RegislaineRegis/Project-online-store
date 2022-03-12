@@ -23,7 +23,7 @@ export default class ShoppingCart extends Component {
     let { quantity } = product;
     quantity = quantity === 0 ? 0 : quantity - 1;
     const newProd = { id, title, price, thumbnail, quantity, availableQuantity };
-    if(quantity === 0) {
+    if (quantity === 0) {
       alert('Esse produto será removido do seu carrinho');
       cartFunctions.removeItem(newProd);
     } else cartFunctions.updateItem(newProd);
@@ -57,7 +57,8 @@ export default class ShoppingCart extends Component {
 
   render() {
     const { products, loading } = this.state;
-    const total = products.reduce((acc, { price, quantity }) => acc + (price * quantity), 0);
+    const total = products
+      .reduce((acc, { price, quantity }) => acc + (price * quantity), 0);
     return (
       <section>
         <Link to="/"> HOME </Link>
