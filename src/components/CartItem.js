@@ -10,15 +10,27 @@ class CartItem extends Component {
     return (
       <section className="cart-item" id={ id }>
         <img className="cart-item-img" src={ thumbnail } alt={ title } />
-        <h3 className="cart-item-title" data-testid="shopping-cart-product-name">
-          { title }
-        </h3>
-        <p className="cart-item-price">
-          { `Preço unid: R$ ${price ? price.toFixed(2).replace(/\./gm, ',') : price}` }
-        </p>
-        <p className="cart-item-total">
-          {`Preço total: R$ ${total ? total.toFixed(2).replace(/\./gm, ',') : total}`}
-        </p>
+        <section className="cart-item-text-sect">
+          <section className="title-price-sect">
+            <h3 className="cart-item-title" data-testid="shopping-cart-product-name">
+              { title }
+            </h3>
+            <p className="cart-item-price">
+              { `R$ ${price ? price.toFixed(2).replace(/\./gm, ',') : price}` }
+            </p>
+          </section>
+          <section className="cart-item-qtd-total-sect">
+            <p
+              data-testid="shopping-cart-product-quantity"
+              className="cart-item-qtd"
+            >
+              { `Qtd: ${quantity}` }
+            </p>
+            <p className="cart-item-total">
+              {`R$ ${total ? total.toFixed(2).replace(/\./gm, ',') : total}`}
+            </p>
+          </section>
+        </section>
       </section>
     );
   }

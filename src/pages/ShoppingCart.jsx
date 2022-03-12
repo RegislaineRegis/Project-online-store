@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import * as cartFunctions from '../services/saveShoppingCart';
 import CartItem from '../components/CartItem';
 import Loading from '../components/Loading';
+import Header from '../components/Header';
 
 export default class ShoppingCart extends Component {
   constructor() {
@@ -71,51 +71,66 @@ export default class ShoppingCart extends Component {
     const total = products
       .reduce((acc, { price, quantity }) => acc + (price * quantity), 0);
     const newTotal = total ? total.toFixed(2).replace(/\./gm, ',') : total;
+    const quantity = products.reduce((acc, prod) => acc + prod.quantity, 0);
     return (
       <section>
-        <Link to="/"> HOME </Link>
+        <Header quantity={ quantity } title="Carrinho" />
         {loading && <Loading />}
         {(!loading && products.length === 0 ? (
-          <p data-testid="shopping-cart-empty-message">
+          <p
+            data-testid="shopping-cart-empty-message"
+            className="empty-message"
+          >
             Seu carrinho está vazio
           </p>
         ) : (
-          <section>
-            {products.map((product) => (
-              <section key={ product.id }>
-                <button
-                  type="button"
-                  onClick={ () => this.deleteProd(product) }
-                >
-                  X
-                </button>
-                <CartItem
-                  product={ product }
-                />
-                <button
-                  type="button"
-                  data-testid="product-decrease-quantity"
-                  onClick={ () => this.removeQuantity(product) }
-                >
-                  -
-                </button>
-                <p data-testid="shopping-cart-product-quantity">
-                  { `Un: ${product.quantity}` }
-                </p>
-                <button
-                  type="button"
-                  data-testid="product-increase-quantity"
-                  onClick={ () => this.addQuantity(product) }
-                >
-                  +
+          <section className="cart-items-sect">
+            <section className="cart-cards-sect">
+              {products.map((product) => (
+                <section className="cart-item-card" key={ product.id }>
+                  <button
+                    className="delete-btn"
+                    type="button"
+                    onClick={ () => this.deleteProd(product) }
+                  >
+                    X
+                  </button>
+                  <CartItem
+                    product={ product }
+                  />
+                  <section className="cart-qtd-btn-sect">
+                    <button
+                      className="cart-less-btn"
+                      type="button"
+                      data-testid="product-decrease-quantity"
+                      onClick={ () => this.removeQuantity(product) }
+                    >
+                      -
+                    </button>
+                    <button
+                      className="cart-more-btn"
+                      type="button"
+                      data-testid="product-increase-quantity"
+                      onClick={ () => this.addQuantity(product) }
+                    >
+                      +
+                    </button>
+                  </section>
+                </section>
+              ))}
+            </section>
+            <section className="total-btn-sect">
+              <section className="cart-total-sect">
+                <p className="cart-total">Valor final:</p>
+                <p>{`R$ ${newTotal}`}</p>
+              </section>
+              <section className="btn-sect">
+                <button className="final-btn" type="button">Finalizar compra</button>
+                <button className="clean-btn" type="button" onClick={ this.emptyCart }>
+                  Esvaziar carrinho
                 </button>
               </section>
-            ))}
-            <p>{`Valor final: R$ ${newTotal}`}</p>
-            <button type="button">Finalizar compra</button>
-            <button type="button" onClick={ this.emptyCart }>
-              Esvaziar carrinho
-            </button>
+            </section>
           </section>
         )
         )}

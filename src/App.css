@@ -1,16 +1,26 @@
 :root {
 
+  --yellow: #ffce4f;
+
+  --light-yellow: #ffe195;
+
   --light-blue: rgb(1, 79, 124);
 
   --dark-blue: rgb(1, 47, 107);
 
-  --light-gray: rgb(225, 229, 235);
+  --light-gray: rgba(225, 229, 235, 0.582);
 
-  --gray1: rgb(62, 66, 75);
+  --light-gray2: #5f5f5fa4;
 
-  --gray2: rgb(40, 42, 47);
+  --gray1: #686868;
 
-  --gray3: rgb(30, 31, 36);
+  --gray2: #5f5f5f;
 
-  --gray4: rgb(26, 27, 28);
+  --gray3: #adadad;
+
+  --gray4: #969696;
+}
+
+body {
+  background-color: var(--light-gray);
 }

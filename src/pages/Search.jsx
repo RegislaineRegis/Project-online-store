@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { FaShoppingCart } from 'react-icons/fa';
 import * as api from '../services/api';
 import * as shoppinCart from '../services/saveShoppingCart';
 import CategoriesButtons from '../components/CategoryButtons';
 import Loading from '../components/Loading';
 import '../styles/Buttons.css';
 import ProductCard from '../components/ProductCard';
+import Header from '../components/Header';
 
 // Feito em pair programming com: Victor Reksidler, Pedro Henrique Moura, Regislaine Regis, Jaziel Silva, Débora Serra
 
@@ -94,6 +93,7 @@ export default class Search extends Component {
     const buying = cartItems.reduce((acc, item) => acc + item.quantity, 0);
     return (
       <div>
+        <Header quantity={ buying } title="FrontEnd Masters" />
         <section className="buttons-sect">
           {loading ? <Loading /> : (
             categories.map((cat) => (
@@ -132,13 +132,6 @@ export default class Search extends Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <Link
-          to="/shopping-cart"
-          data-testid="shopping-cart-button"
-        >
-          <FaShoppingCart className="shopping-cart-icon" />
-          <p>{ buying }</p>
-        </Link>
         {!loading && products.length > 0 && (
           <section className="card-sect">
             <p>{`Número de resultados: ${products.length}`}</p>

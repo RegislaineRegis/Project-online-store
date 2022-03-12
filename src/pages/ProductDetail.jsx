@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { FaShoppingCart } from 'react-icons/fa';
 import * as api from '../services/api';
 import * as shoppinCart from '../services/saveShoppingCart';
 import Loading from '../components/Loading';
 import EspecificacoesTecnicas from '../components/EspecificacoesTecnicas';
+import Header from '../components/Header';
 
 export default class ProductDetail extends Component {
   constructor() {
@@ -27,7 +26,7 @@ export default class ProductDetail extends Component {
       lastUpdated: '',
       loading: true,
       quantity: 1,
-      cartItems: shoppinCart.getShoppingCart().length,
+      cartItems: shoppinCart.getShoppingCart(),
     };
   }
 
@@ -84,14 +83,7 @@ export default class ProductDetail extends Component {
     const newPrice = price ? price.toFixed(2).replace(/\./gm, ',') : price;
     const product = (
       <section>
-        <Link to="/">HOME</Link>
-        <Link
-          to="/shopping-cart"
-          data-testid="shopping-cart-button"
-        >
-          <FaShoppingCart className="shopping-cart-icon" />
-          <p>{ buying }</p>
-        </Link>
+        <Header quantity={ buying } title="FrontEnd Masters" />
         <h1 data-testid="product-detail-name">{title}</h1>
         <p>{`Condição: ${condition}`}</p>
         <p>{`Criado em: ${created}`}</p>
