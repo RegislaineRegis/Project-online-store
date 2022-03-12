@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import * as api from '../services/api';
+import * as shoppinCart from '../services/saveShoppingCart';
 import CategoriesButtons from '../components/CategoryButtons';
 import Loading from '../components/Loading';
 import '../styles/Buttons.css';
@@ -80,8 +81,16 @@ export default class Search extends Component {
     this.getProducts(categoryId, query);
   }
 
+  onClickAddProductCart = ({ title, id, thumbnail, price, availableQuantity }) => {
+    shoppinCart
+      .addItem({ title, id, thumbnail, price, quantity: 1, availableQuantity });
+    this.setState({ cartItems: shoppinCart.getShoppingCart() });
+  }
+
   render() {
     const { categories, loading, products, sort } = this.state;
+    const cartItems = shoppinCart.getShoppingCart();
+    const buying = cartItems.reduce((acc, item) => acc + item.quantity, 0)
     return (
       <div>
         <section className="buttons-sect">
@@ -127,12 +136,18 @@ export default class Search extends Component {
           data-testid="shopping-cart-button"
         >
           <FaShoppingCart className="shopping-cart-icon" />
+          <p>{ buying }</p>
         </Link>
         {!loading && products.length > 0 && (
-          <section>
+          <section className="card-sect">
             <p>{`Número de resultados: ${products.length}`}</p>
             {products.map((product) => (
-              <ProductCard key={ product.id } product={ product } />
+              <ProductCard
+                key={ product.id }
+                product={ product }
+                handleClick={ this.onClickAddProductCart }
+                className={ cartItems.some((item) => item.id === product.id) ? 'prod-card selected' : 'prod-card'}
+              />
             ))}
           </section>
         )}
