@@ -55,16 +55,27 @@ export default class ShoppingCart extends Component {
     });
   }
 
+  emptyCart = () => {
+    const { products } = this.state;
+    this.setState({ loading: true }, () => {
+      products.forEach((prod) => cartFunctions.removeItem(prod));
+      this.setState({
+        products: cartFunctions.getShoppingCart(),
+        loading: false,
+      })
+    })
+  }
+
   render() {
     const { products, loading } = this.state;
     const total = products
       .reduce((acc, { price, quantity }) => acc + (price * quantity), 0);
+    const newTotal = total ? total.toFixed(2).replace(/\./gm, ',') : total;
     return (
       <section>
         <Link to="/"> HOME </Link>
         {loading && <Loading />}
-        {(
-          products.length === 0 ? (
+        {( !loading && products.length === 0 ? (
             <p data-testid="shopping-cart-empty-message">
               Seu carrinho está vazio
             </p>
@@ -100,7 +111,11 @@ export default class ShoppingCart extends Component {
                   </button>
                 </section>
               ))}
-              <p>{`Valor final: R$ ${total.toFixed(2).replace(/\./gm, ',')}`}</p>
+              <p>{`Valor final: R$ ${newTotal}`}</p>
+              <button type="button">Finalizar compra</button>
+              <button type="button" onClick={ this.emptyCart }>
+                Esvaziar carrinho
+              </button>
             </section>
           )
         )}

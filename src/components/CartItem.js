@@ -13,10 +13,10 @@ class CartItem extends Component {
           { title }
         </h3>
         <p>
-          { `Preço unid: R$ ${price.toFixed(2).replace(/\./gm, ',')}` }
+          { `Preço unid: R$ ${price ? price.toFixed(2).replace(/\./gm, ',') : price}` }
         </p>
         <p>
-          {`Preço total: R$ ${total.toFixed(2).replace(/\./gm, ',')}`}
+          {`Preço total: R$ ${total ? total.toFixed(2).replace(/\./gm, ',') : total}`}
         </p>
       </section>
     );

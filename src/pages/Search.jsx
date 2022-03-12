@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import * as api from '../services/api';
+import * as shoppinCart from '../services/saveShoppingCart';
 import CategoriesButtons from '../components/CategoryButtons';
 import Loading from '../components/Loading';
 import '../styles/Buttons.css';
@@ -18,6 +19,7 @@ export default class Search extends Component {
       loading: true,
       products: [],
       categoryId: '',
+      sort: '',
     };
   }
 
@@ -58,13 +60,37 @@ export default class Search extends Component {
     this.setState({ query: target.value });
   }
 
+  handleSort = ({ target }) => {
+    this.setState({ sort: target.value }, () => this.sortProd());
+  }
+
+  sortProd = () => {
+    const { products, sort } = this.state;
+    let newList = products;
+    if (sort === 'dsc') {
+      newList = products.sort((a, b) => b.price - a.price);
+    }
+    if (sort === 'asc') {
+      newList = products.sort((a, b) => a.price - b.price);
+    }
+    this.setState({ products: newList });
+  }
+
   searchProducts = () => {
     const { query, categoryId } = this.state;
     this.getProducts(categoryId, query);
   }
 
+  onClickAddProductCart = ({ title, id, thumbnail, price, availableQuantity }) => {
+    shoppinCart
+      .addItem({ title, id, thumbnail, price, quantity: 1, availableQuantity });
+    this.setState({ cartItems: shoppinCart.getShoppingCart() });
+  }
+
   render() {
-    const { categories, loading, products } = this.state;
+    const { categories, loading, products, sort } = this.state;
+    const cartItems = shoppinCart.getShoppingCart();
+    const buying = cartItems.reduce((acc, item) => acc + item.quantity, 0)
     return (
       <div>
         <section className="buttons-sect">
@@ -79,6 +105,15 @@ export default class Search extends Component {
             ))
           )}
         </section>
+        <select
+          name="sort"
+          onChange={ this.handleSort }
+          value={ sort }
+        >
+          <option value="">Ordenar</option>
+          <option value="asc">Menor preço</option>
+          <option value="dsc">Maior preço</option>
+        </select>
         <input
           type="text"
           data-testid="query-input"
@@ -101,12 +136,18 @@ export default class Search extends Component {
           data-testid="shopping-cart-button"
         >
           <FaShoppingCart className="shopping-cart-icon" />
+          <p>{ buying }</p>
         </Link>
         {!loading && products.length > 0 && (
-          <section>
+          <section className="card-sect">
             <p>{`Número de resultados: ${products.length}`}</p>
             {products.map((product) => (
-              <ProductCard key={ product.id } product={ product } />
+              <ProductCard
+                key={ product.id }
+                product={ product }
+                handleClick={ this.onClickAddProductCart }
+                className={ cartItems.some((item) => item.id === product.id) ? 'prod-card selected' : 'prod-card'}
+              />
             ))}
           </section>
         )}

@@ -5,6 +5,7 @@ import { FaShoppingCart } from 'react-icons/fa';
 import * as api from '../services/api';
 import * as shoppinCart from '../services/saveShoppingCart';
 import Loading from '../components/Loading';
+import EspecificacoesTecnicas from '../components/EspecificacoesTecnicas';
 
 export default class ProductDetail extends Component {
   constructor() {
@@ -26,6 +27,7 @@ export default class ProductDetail extends Component {
       lastUpdated: '',
       loading: true,
       quantity: 1,
+      cartItems: shoppinCart.getShoppingCart().length,
     };
   }
 
@@ -37,6 +39,7 @@ export default class ProductDetail extends Component {
   handleClick = () => {
     const { title, id, thumbnail, price, quantity, availableQuantity } = this.state;
     shoppinCart.addItem({ title, id, thumbnail, price, quantity, availableQuantity });
+    this.setState({ cartItems: shoppinCart.getShoppingCart().length });
   }
 
   getProduct = async (id) => {
@@ -74,10 +77,11 @@ export default class ProductDetail extends Component {
   render() {
     const { title, price, availableQuantity, condition, pictures,
       acceptsMercadopago, freeShipping, attributes, warranty, status,
-      dateCreated, lastUpdated, loading } = this.state;
-
+      dateCreated, lastUpdated, loading, cartItems } = this.state;
+    const buying = cartItems.reduce((acc, item) => acc + item.quantity, 0);
     const created = dateCreated.split('T')[0].split('-').reverse().join('/');
     const updated = lastUpdated.split('T')[0].split('-').reverse().join('/');
+    const newPrice = price ? price.toFixed(2).replace(/\./gm, ',') : price;
     const product = (
       <section>
         <Link to="/">HOME</Link>
@@ -86,6 +90,7 @@ export default class ProductDetail extends Component {
           data-testid="shopping-cart-button"
         >
           <FaShoppingCart className="shopping-cart-icon" />
+          <p>{ buying }</p>
         </Link>
         <h1 data-testid="product-detail-name">{title}</h1>
         <p>{`Condição: ${condition}`}</p>
@@ -98,7 +103,7 @@ export default class ProductDetail extends Component {
         </section>
         <p>{ `Quantidade disponível: ${availableQuantity}` }</p>
         <h3>
-          { `Preço: R$ ${price.toFixed(2).replace(/\./gm, ',')} - Status: ${status}` }
+          { `Preço: R$ ${newPrice} - Status: ${status}` }
         </h3>
         <button
           type="button"
@@ -111,14 +116,7 @@ export default class ProductDetail extends Component {
         {freeShipping && <p>Frete Grátis</p>}
         <p>{warranty}</p>
         <h3>Especificações técnicas: </h3>
-        <ul>
-          {attributes.map((attr) => (
-            <li key={ attr.name }>
-              <h3>{attr.name}</h3>
-              <p>{attr.value_name}</p>
-            </li>
-          ))}
-        </ul>
+        <EspecificacoesTecnicas attributes={ attributes } />
       </section>
     );
 
