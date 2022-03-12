@@ -1,19 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as cartFunctions from '../services/saveShoppingCart';
 import { Link } from 'react-router-dom';
+import * as cartFunctions from '../services/saveShoppingCart';
 
 // requisito 15 - regislaine
 
 class ProductCard extends React.Component {
-  onClickAddProductCart = ({ title, id, thumbnail, price }) => {
-    shoppinCart.addItem({ title, id, thumbnail, price, quantity: 1 });
+  onClickAddProductCart = ({ title, id, thumbnail, price, availableQuantity }) => {
+    cartFunctions
+      .addItem({ title, id, thumbnail, price, quantity: 1, availableQuantity });
   }
-  
+
   render() {
     const { product } = this.props;
-    const { id, title, price, thumbnail, shipping } = product;
+    const { id, title, price, thumbnail, shipping, availableQuantity } = product;
     const { free_shipping: freeShipping } = shipping;
+    const newProd = { title, id, thumbnail, price, availableQuantity };
     return (
       <section id={ id } data-testid="product">
         <h2>{title}</h2>
@@ -29,7 +31,7 @@ class ProductCard extends React.Component {
           data-testid="product-add-to-cart"
           type="button"
           id={ id }
-          onClick={ () => this.onClickAddProductCart({title, id, thumbnail, price}) }
+          onClick={ () => this.onClickAddProductCart(newProd) }
         >
           Adiconar produto ao carrinho
         </button>
@@ -45,6 +47,7 @@ ProductCard.propTypes = {
     title: PropTypes.string,
     price: PropTypes.number,
     thumbnail: PropTypes.string,
+    availableQuantity: PropTypes.number,
     shipping: PropTypes.shape({
       free_shipping: PropTypes.bool,
     }),
