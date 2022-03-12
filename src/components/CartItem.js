@@ -3,21 +3,6 @@ import PropTypes from 'prop-types';
 // import * as cartFunctions from '../services/saveShoppingCart';
 
 class CartItem extends Component {
-  constructor() {
-    super();
-    this.state = {
-      id: '',
-      title: '',
-      price: 0,
-      thumbnail: '',
-      quantity: 1,
-    };
-  }
-
-  componentDidMount() {
-    const { product: { title, thumbnail, price, quantity, id } } = this.props;
-    this.setState({ title, thumbnail, price, quantity, id });
-  }
 
   render() {
     const { product: { title, thumbnail, price, quantity, id } } = this.props;

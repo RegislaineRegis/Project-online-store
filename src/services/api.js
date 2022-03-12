@@ -31,7 +31,7 @@ export async function getProductsDetails(productId) {
     const response = await fetch(ENDPOINT_PRODUCT);
     const data = await response.json();
     return data;
-  } catch(error) {
+  } catch (error) {
     console.log(error);
   }
 }

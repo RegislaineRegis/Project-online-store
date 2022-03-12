@@ -19,34 +19,32 @@ export default class ShoppingCart extends Component {
   }
 
   removeQuantity = (product) => {
-    let { id, title, price, thumbnail, quantity, availableQuantity } = product;
-    if (quantity === 0) quantity = 0;
-    else quantity = quantity - 1;
+    const { id, title, price, thumbnail, availableQuantity } = product;
+    let { quantity } = product;
+    quantity = quantity === 0 ? 0 : quantity - 1;
     const newProd = { id, title, price, thumbnail, quantity, availableQuantity };
     if(quantity === 0) {
       alert('Esse produto será removido do seu carrinho');
       cartFunctions.removeItem(newProd);
-    }
-    else cartFunctions.updateItem(newProd);
+    } else cartFunctions.updateItem(newProd);
     this.setState({ loading: true }, () => {
       this.setState({
         products: cartFunctions.getShoppingCart(),
-        loading: false })
-    })
-    
-    
+        loading: false });
+    });
   }
 
   addQuantity = (product) => {
-    let { id, title, price, thumbnail, quantity, availableQuantity } = product;
-    if (quantity < availableQuantity) quantity = quantity + 1;
-    else quantity = availableQuantity;
+    const { id, title, price, thumbnail, availableQuantity } = product;
+    let { quantity } = product;
+
+    quantity = quantity < availableQuantity ? quantity + 1 : availableQuantity;
     const newProd = { id, title, price, thumbnail, quantity, availableQuantity };
     cartFunctions.updateItem(newProd);
     this.setState({ loading: true }, () => {
       this.setState({ products: cartFunctions.getShoppingCart(),
-        loading: false })
-    })
+        loading: false });
+    });
   }
 
   deleteProd = (product) => {
@@ -54,7 +52,7 @@ export default class ShoppingCart extends Component {
     this.setState({ loading: true }, () => {
       this.setState({ products: cartFunctions.getShoppingCart(),
         loading: false });
-    })
+    });
   }
 
   render() {
@@ -63,9 +61,12 @@ export default class ShoppingCart extends Component {
     return (
       <section>
         <Link to="/"> HOME </Link>
-        {loading ? <Loading /> : (
+        {loading && <Loading />}
+        {(
           products.length === 0 ? (
-            <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+            <p data-testid="shopping-cart-empty-message">
+              Seu carrinho está vazio
+            </p>
           ) : (
             <section>
               {products.map((product) => (

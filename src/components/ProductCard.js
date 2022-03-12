@@ -7,13 +7,15 @@ import * as cartFunctions from '../services/saveShoppingCart';
 
 class ProductCard extends React.Component {
   onClickAddProductCart = ({ title, id, thumbnail, price, availableQuantity }) => {
-    cartFunctions.addItem({ title, id, thumbnail, price, quantity: 1, availableQuantity });
+    cartFunctions
+      .addItem({ title, id, thumbnail, price, quantity: 1, availableQuantity });
   }
 
   render() {
     const { product } = this.props;
     const { id, title, price, thumbnail, shipping, availableQuantity } = product;
     const { free_shipping: freeShipping } = shipping;
+    const newProd = { title, id, thumbnail, price, availableQuantity };
     return (
       <section id={ id } data-testid="product">
         <h2>{title}</h2>
@@ -29,7 +31,7 @@ class ProductCard extends React.Component {
           data-testid="product-add-to-cart"
           type="button"
           id={ id }
-          onClick={ () => this.onClickAddProductCart({ title, id, thumbnail, price, availableQuantity }) }
+          onClick={ () => this.onClickAddProductCart(newProd) }
         >
           Adiconar produto ao carrinho
         </button>
