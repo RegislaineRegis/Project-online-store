@@ -10,7 +10,14 @@ export const getShoppingCart = () => {
 };
 
 export const addItem = (item) => {
+  const { id, title, thumbnail, availableQuantity } = item;
+  let { quantity } = item;
   const cart = JSON.parse(localStorage.getItem(CART_KEY));
+  if (cart.some((prod) => prod.id === item.id)) {
+    quantity = quantity < availableQuantity ? quantity + 1 : availableQuantity;
+    const newItem = { id, title, thumbnail, availableQuantity, quantity };
+    return updateItem(newItem);
+  }
   const newCart = [...cart, item];
   localStorage.setItem(CART_KEY, JSON.stringify(newCart));
 };
