@@ -78,6 +78,7 @@ export default class ProductDetail extends Component {
 
     const created = dateCreated.split('T')[0].split('-').reverse().join('/');
     const updated = lastUpdated.split('T')[0].split('-').reverse().join('/');
+    const newPrice = price ? price.toFixed(2).replace(/\./gm, ',') : price;
     const product = (
       <section>
         <Link to="/">HOME</Link>
@@ -98,7 +99,7 @@ export default class ProductDetail extends Component {
         </section>
         <p>{ `Quantidade disponível: ${availableQuantity}` }</p>
         <h3>
-          { `Preço: R$ ${price ? price.toFixed(2).replace(/\./gm, ',') : price} - Status: ${status}` }
+          { `Preço: R$ ${newPrice} - Status: ${status}` }
         </h3>
         <button
           type="button"

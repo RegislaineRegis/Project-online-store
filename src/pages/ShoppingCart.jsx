@@ -59,6 +59,7 @@ export default class ShoppingCart extends Component {
     const { products, loading } = this.state;
     const total = products
       .reduce((acc, { price, quantity }) => acc + (price * quantity), 0);
+    const newTotal = total ? total.toFixed(2).replace(/\./gm, ',') : total;
     return (
       <section>
         <Link to="/"> HOME </Link>
@@ -100,7 +101,7 @@ export default class ShoppingCart extends Component {
                   </button>
                 </section>
               ))}
-              <p>{`Valor final: R$ ${total ? total.toFixed(2).replace(/\./gm, ',') : total}`}</p>
+              <p>{`Valor final: R$ ${newTotal}`}</p>
               <button type="button">Finalizar compra</button>
             </section>
           )
