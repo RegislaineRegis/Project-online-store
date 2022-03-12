@@ -100,7 +100,8 @@ export default class ShoppingCart extends Component {
                   </button>
                 </section>
               ))}
-              <p>{`Valor final: R$ ${total.toFixed(2).replace(/\./gm, ',')}`}</p>
+              <p>{`Valor final: R$ ${total ? total.toFixed(2).replace(/\./gm, ',') : total}`}</p>
+              <button type="button">Finalizar compra</button>
             </section>
           )
         )}

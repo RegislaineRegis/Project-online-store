@@ -98,7 +98,7 @@ export default class ProductDetail extends Component {
         </section>
         <p>{ `Quantidade disponível: ${availableQuantity}` }</p>
         <h3>
-          { `Preço: R$ ${price.toFixed(2).replace(/\./gm, ',')} - Status: ${status}` }
+          { `Preço: R$ ${price ? price.toFixed(2).replace(/\./gm, ',') : price} - Status: ${status}` }
         </h3>
         <button
           type="button"

@@ -20,7 +20,7 @@ class ProductCard extends React.Component {
       <section id={ id } data-testid="product">
         <h2>{title}</h2>
         <img src={ thumbnail } alt={ title } />
-        <p>{`R$ ${price.toFixed(2).replace(/\./gm, ',')}`}</p>
+        <p>{`R$ ${price ? price.toFixed(2).replace(/\./gm, ',') : 'Sob consulta'}`}</p>
 
         {freeShipping && <p data-testid="free-shipping">Frete grátis</p>}
         <Link data-testid="product-detail-link" to={ `/product/${id}` }>

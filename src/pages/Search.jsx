@@ -18,6 +18,7 @@ export default class Search extends Component {
       loading: true,
       products: [],
       categoryId: '',
+      sort: '',
     };
   }
 
@@ -58,13 +59,29 @@ export default class Search extends Component {
     this.setState({ query: target.value });
   }
 
+  handleSort = ({ target }) => {
+    this.setState({ sort: target.value }, () => this.sortProd());
+  }
+
+  sortProd = () => {
+    const { products, sort } = this.state;
+    let newList = products;
+    if (sort === 'dsc') {
+      newList = products.sort((a, b) => b.price - a.price);
+    }
+    if (sort === 'asc') {
+      newList = products.sort((a, b) => a.price - b.price);
+    }
+    this.setState({ products: newList });
+  }
+
   searchProducts = () => {
     const { query, categoryId } = this.state;
     this.getProducts(categoryId, query);
   }
 
   render() {
-    const { categories, loading, products } = this.state;
+    const { categories, loading, products, sort } = this.state;
     return (
       <div>
         <section className="buttons-sect">
@@ -79,6 +96,15 @@ export default class Search extends Component {
             ))
           )}
         </section>
+        <select
+          name="sort"
+          onChange={ this.handleSort }
+          value={ sort }
+        >
+          <option value="">Ordenar</option>
+          <option value="asc">Menor preço</option>
+          <option value="dsc">Maior preço</option>
+        </select>
         <input
           type="text"
           data-testid="query-input"
