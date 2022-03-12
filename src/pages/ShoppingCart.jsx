@@ -62,8 +62,8 @@ export default class ShoppingCart extends Component {
       this.setState({
         products: cartFunctions.getShoppingCart(),
         loading: false,
-      })
-    })
+      });
+    });
   }
 
   render() {
@@ -75,49 +75,49 @@ export default class ShoppingCart extends Component {
       <section>
         <Link to="/"> HOME </Link>
         {loading && <Loading />}
-        {( !loading && products.length === 0 ? (
-            <p data-testid="shopping-cart-empty-message">
-              Seu carrinho está vazio
-            </p>
-          ) : (
-            <section>
-              {products.map((product) => (
-                <section key={ product.id }>
-                  <button
-                    type="button"
-                    onClick={ () => this.deleteProd(product) }
-                  >
-                    X
-                  </button>
-                  <CartItem
-                    product={ product }
-                  />
-                  <button
-                    type="button"
-                    data-testid="product-decrease-quantity"
-                    onClick={ () => this.removeQuantity(product) }
-                  >
-                    -
-                  </button>
-                  <p data-testid="shopping-cart-product-quantity">
-                    { `Un: ${product.quantity}` }
-                  </p>
-                  <button
-                    type="button"
-                    data-testid="product-increase-quantity"
-                    onClick={ () => this.addQuantity(product) }
-                  >
-                    +
-                  </button>
-                </section>
-              ))}
-              <p>{`Valor final: R$ ${newTotal}`}</p>
-              <button type="button">Finalizar compra</button>
-              <button type="button" onClick={ this.emptyCart }>
-                Esvaziar carrinho
-              </button>
-            </section>
-          )
+        {(!loading && products.length === 0 ? (
+          <p data-testid="shopping-cart-empty-message">
+            Seu carrinho está vazio
+          </p>
+        ) : (
+          <section>
+            {products.map((product) => (
+              <section key={ product.id }>
+                <button
+                  type="button"
+                  onClick={ () => this.deleteProd(product) }
+                >
+                  X
+                </button>
+                <CartItem
+                  product={ product }
+                />
+                <button
+                  type="button"
+                  data-testid="product-decrease-quantity"
+                  onClick={ () => this.removeQuantity(product) }
+                >
+                  -
+                </button>
+                <p data-testid="shopping-cart-product-quantity">
+                  { `Un: ${product.quantity}` }
+                </p>
+                <button
+                  type="button"
+                  data-testid="product-increase-quantity"
+                  onClick={ () => this.addQuantity(product) }
+                >
+                  +
+                </button>
+              </section>
+            ))}
+            <p>{`Valor final: R$ ${newTotal}`}</p>
+            <button type="button">Finalizar compra</button>
+            <button type="button" onClick={ this.emptyCart }>
+              Esvaziar carrinho
+            </button>
+          </section>
+        )
         )}
       </section>
     );

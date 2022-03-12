@@ -20,11 +20,13 @@ export default class Search extends Component {
       products: [],
       categoryId: '',
       sort: '',
+      cartItems: [],
     };
   }
 
   componentDidMount() {
     this.requestCategories();
+    this.setState({ cartItems: shoppinCart.getShoppingCart() });
   }
 
   requestCategories = async () => {
@@ -88,8 +90,7 @@ export default class Search extends Component {
   }
 
   render() {
-    const { categories, loading, products, sort } = this.state;
-    const cartItems = shoppinCart.getShoppingCart();
+    const { categories, loading, products, sort, cartItems } = this.state;
     const buying = cartItems.reduce((acc, item) => acc + item.quantity, 0)
     return (
       <div>

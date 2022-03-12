@@ -13,12 +13,19 @@ class EspecificacoesTecnicas extends React.Component {
           </li>
         ))}
       </ul>
-    )
+    );
   }
 }
 
 EspecificacoesTecnicas.propTypes = {
-  attributes: PropTypes.array.isRequired,
-}
+  attributes: PropTypes.arrayOf(
+    PropTypes.objectOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        value_name: PropTypes.string,
+      }),
+    ),
+  ).isRequired,
+};
 
 export default EspecificacoesTecnicas;
