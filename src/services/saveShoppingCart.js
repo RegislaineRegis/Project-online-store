@@ -9,6 +9,16 @@ export const getShoppingCart = () => {
   return getCart;
 };
 
+export const updateItem = (item) => {
+  const cart = JSON.parse(localStorage.getItem(CART_KEY));
+  const newCart = cart.map((prod) => {
+    if (prod.id === item.id) {
+      return { ...prod, ...item };
+    } return prod;
+  });
+  localStorage.setItem(CART_KEY, JSON.stringify(newCart));
+};
+
 export const addItem = (item) => {
   const { id, title, thumbnail, availableQuantity } = item;
   let { quantity } = item;
@@ -19,16 +29,6 @@ export const addItem = (item) => {
     return updateItem(newItem);
   }
   const newCart = [...cart, item];
-  localStorage.setItem(CART_KEY, JSON.stringify(newCart));
-};
-
-export const updateItem = (item) => {
-  const cart = JSON.parse(localStorage.getItem(CART_KEY));
-  const newCart = cart.map((prod) => {
-    if (prod.id === item.id) {
-      return { ...prod, ...item };
-    } return prod;
-  });
   localStorage.setItem(CART_KEY, JSON.stringify(newCart));
 };
 
