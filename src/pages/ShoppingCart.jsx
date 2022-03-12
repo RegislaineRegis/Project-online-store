@@ -19,10 +19,10 @@ export default class ShoppingCart extends Component {
   }
 
   removeQuantity = (product) => {
-    let { id, title, price, thumbnail, quantity } = product;
+    let { id, title, price, thumbnail, quantity, availableQuantity } = product;
     if (quantity === 0) quantity = 0;
     else quantity = quantity - 1;
-    const newProd = { id, title, price, thumbnail, quantity };
+    const newProd = { id, title, price, thumbnail, quantity, availableQuantity };
     if(quantity === 0) {
       alert('Esse produto será removido do seu carrinho');
       cartFunctions.removeItem(newProd);
@@ -38,10 +38,10 @@ export default class ShoppingCart extends Component {
   }
 
   addQuantity = (product) => {
-    // const { products } = this.state;
-    let { id, title, price, thumbnail, quantity } = product;
-    quantity = quantity + 1;
-    const newProd = { id, title, price, thumbnail, quantity };
+    let { id, title, price, thumbnail, quantity, availableQuantity } = product;
+    if (quantity < availableQuantity) quantity = quantity + 1;
+    else quantity = availableQuantity;
+    const newProd = { id, title, price, thumbnail, quantity, availableQuantity };
     cartFunctions.updateItem(newProd);
     this.setState({ loading: true }, () => {
       this.setState({ products: cartFunctions.getShoppingCart(),
@@ -81,6 +81,7 @@ export default class ShoppingCart extends Component {
                   />
                   <button
                     type="button"
+                    data-testid="product-decrease-quantity"
                     onClick={ () => this.removeQuantity(product) }
                   >
                     -
@@ -90,6 +91,7 @@ export default class ShoppingCart extends Component {
                   </p>
                   <button
                     type="button"
+                    data-testid="product-increase-quantity"
                     onClick={ () => this.addQuantity(product) }
                   >
                     +

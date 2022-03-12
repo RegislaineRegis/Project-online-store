@@ -42,8 +42,8 @@ export default class Search extends Component {
   getProducts = async (categoryId = '', query = '') => {
     const receiveProducts = await api.getProductsFromCategoryAndQuery(categoryId, query);
     const products = receiveProducts.results.map((product) => {
-      const { id, title, thumbnail, price, shipping } = product;
-      return { id, title, thumbnail, price, shipping };
+      const { id, title, thumbnail, price, shipping, available_quantity: availableQuantity } = product;
+      return { id, title, thumbnail, price, shipping, availableQuantity };
     });
     this.setState({ products, loading: false });
   }

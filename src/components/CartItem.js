@@ -19,28 +19,6 @@ class CartItem extends Component {
     this.setState({ title, thumbnail, price, quantity, id });
   }
 
-  // removeQuantity = () => {
-  //   this.setState((prev) => ({
-  //     quantity: prev.quantity > 1 ? prev.quantity - 1 : prev.quantity,
-  //   }), () => {
-  //     const { id, title, quantity, price, thumbnail } = this.state;
-  //     cartFunctions.updateItem({ id, title, quantity, price, thumbnail });
-  //   });
-  // }
-
-  // addQuantity = () => {
-  //   // const { quantity } = this.state;
-  //   this.setState((prev) => ({ quantity: prev.quantity + 1 }), () => {
-  //     const { id, title, quantity, price, thumbnail } = this.state;
-  //     cartFunctions.updateItem({ id, title, quantity, price, thumbnail });
-  //   });
-  // }
-
-  // deleteProd = () => {
-  //   const { title, thumbnail, price, quantity, id } = this.state;
-  //   cartFunctions.removeItem({ title, thumbnail, price, quantity, id });
-  // }
-
   render() {
     const { product: { title, thumbnail, price, quantity, id } } = this.props;
     const total = price * quantity;

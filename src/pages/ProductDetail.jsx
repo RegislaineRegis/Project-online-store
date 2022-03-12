@@ -30,14 +30,13 @@ export default class ProductDetail extends Component {
   }
 
   componentDidMount() {
-    // console.log(this.props)
     const { match: { params: { id } } } = this.props;
     this.getProduct(id);
   }
 
   handleClick = () => {
-    const { title, id, thumbnail, price, quantity } = this.state;
-    shoppinCart.addItem({ title, id, thumbnail, price, quantity });
+    const { title, id, thumbnail, price, quantity, availableQuantity } = this.state;
+    shoppinCart.addItem({ title, id, thumbnail, price, quantity, availableQuantity });
   }
 
   getProduct = async (id) => {
@@ -55,7 +54,6 @@ export default class ProductDetail extends Component {
       status,
       date_created: dateCreated,
       last_updated: lastUpdated } = response;
-
     this.setState({ id,
       title,
       thumbnail,
@@ -82,6 +80,7 @@ export default class ProductDetail extends Component {
     const updated = lastUpdated.split('T')[0].split('-').reverse().join('/');
     const product = (
       <section>
+        <Link to="/">HOME</Link>
         <Link
           to="/shopping-cart"
           data-testid="shopping-cart-button"
