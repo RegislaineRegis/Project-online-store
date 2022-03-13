@@ -1,4 +1,11 @@
 const CART_KEY = 'shoppingCartItems';
+if (!localStorage.getItem('query')){
+  localStorage.setItem('query', '');
+}
+
+if (!localStorage.getItem('catId')) {
+  localStorage.setItem('catId', '');
+}
 
 if (!localStorage.getItem(CART_KEY)) {
   localStorage.setItem(CART_KEY, JSON.stringify([]));

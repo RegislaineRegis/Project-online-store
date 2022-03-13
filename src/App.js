@@ -6,6 +6,11 @@ import ShoppingCart from './pages/ShoppingCart';
 import ProductDetail from './pages/ProductDetail';
 
 class App extends Component {
+  componentWillUnmount() {
+    localStorage.removeItem('query');
+    localStorage.removeItem('catId');
+  }
+  
   render() {
     return (
       <BrowserRouter>

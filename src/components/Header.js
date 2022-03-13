@@ -10,7 +10,10 @@ class Header extends React.Component {
     return (
       <header>
         <Link to="/"><FaChevronLeft className="back-icon" /></Link>
-        <h1 className="header-title">{`${title} ${<FaCode />}`}</h1>
+        <h1 className="header-title">
+          {title}
+          <FaCode />
+        </h1>
         <Link
           to="/shopping-cart"
           data-testid="shopping-cart-button"

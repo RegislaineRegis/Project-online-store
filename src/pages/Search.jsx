@@ -26,7 +26,21 @@ export default class Search extends Component {
 
   componentDidMount() {
     this.requestCategories();
-    this.setState({ cartItems: shoppinCart.getShoppingCart() });
+    this.setState({ cartItems: shoppinCart.getShoppingCart(),
+      query: localStorage.getItem('query'),
+      categoryId: localStorage.getItem('catId'),
+    }, () => {
+      const { query, categoryId } = this.state;
+      if (query || categoryId) {
+        this.getProducts(categoryId, query);
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    const { query, categoryId } = this.state;
+    localStorage.setItem('query', query);
+    localStorage.setItem('catId', categoryId);
   }
 
   requestCategories = async () => {
@@ -102,24 +116,45 @@ export default class Search extends Component {
     return (
       <div>
         <Header quantity={ buying } title="FrontEnd Masters" />
+        {loading && <Loading />}
         <button
           type="button"
           onClick={ this.showCats }
           className="cat-toggle-btn"
         >
-          {showCat ? 'Ocultar' : 'Mostrar categorias'}
+          {showCat ? 'Ocultar' : 'Mostrar mais categorias'}
         </button>
+        {!loading && (
+              <section className="buttons-sect">
+                {categories.map((cat, index) => {
+                  if (index <= 10) {
+                    return (
+                      <CategoriesButtons
+                        key={ cat.id }
+                        id={ cat.id }
+                        category={ cat.name }
+                        handleClick={ this.handleClick }
+                      />
+                    )
+                  }
+                })}
+              </section>
+            )}
         {showCat && (
           <section className="buttons-sect">
-            {loading ? <Loading /> : (
-              categories.map((cat) => (
-                <CategoriesButtons
-                  key={ cat.id }
-                  id={ cat.id }
-                  category={ cat.name }
-                  handleClick={ this.handleClick }
-                />
-              ))
+            {!loading && (
+              categories.map((cat, index) => {
+                if (index > 10) {
+                  return (
+                    <CategoriesButtons
+                      key={ cat.id }
+                      id={ cat.id }
+                      category={ cat.name }
+                      handleClick={ this.handleClick }
+                    />
+                  )
+                }
+              })
             )}
           </section>
         )}
