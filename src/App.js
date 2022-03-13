@@ -10,7 +10,7 @@ class App extends Component {
     localStorage.removeItem('query');
     localStorage.removeItem('catId');
   }
-  
+
   render() {
     return (
       <BrowserRouter>

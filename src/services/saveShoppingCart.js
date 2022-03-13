@@ -1,5 +1,5 @@
 const CART_KEY = 'shoppingCartItems';
-if (!localStorage.getItem('query')){
+if (!localStorage.getItem('query')) {
   localStorage.setItem('query', '');
 }
 

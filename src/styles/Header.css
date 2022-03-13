@@ -14,6 +14,10 @@ header {
   text-align: center;
 }
 
+.header-title {
+  font-size: 1.3rem;
+}
+
 .shopping-cart-icon {
   height: 40px;
   width: 40px;
@@ -48,5 +52,9 @@ header {
 
   header {
     height: 100px;
+  }
+
+  .header-title {
+    font-size: 2rem;
   }
 }

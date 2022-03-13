@@ -5,11 +5,13 @@ class EspecificacoesTecnicas extends React.Component {
   render() {
     const { attributes } = this.props;
     return (
-      <ul>
+      <ul className="specs-sect">
         {attributes.map((attr) => (
-          <li key={ attr.name }>
-            <h3>{attr.name}</h3>
-            <p>{attr.value_name}</p>
+          <li className="spec-li" key={ attr.name }>
+            <p className="spec-p">
+              <span className="spec-attr">{`${attr.name}: `}</span>
+              {attr.value_name}
+            </p>
           </li>
         ))}
       </ul>

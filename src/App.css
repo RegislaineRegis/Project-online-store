@@ -12,6 +12,8 @@
 
   --light-gray2: #5f5f5fa4;
 
+  --light-gray3: rgba(225, 229, 235, 0.781);
+
   --gray1: #686868;
 
   --gray2: #5f5f5f;
@@ -19,6 +21,8 @@
   --gray3: #adadad;
 
   --gray4: #969696;
+
+
 }
 
 body {

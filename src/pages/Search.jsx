@@ -113,6 +113,7 @@ export default class Search extends Component {
   render() {
     const { categories, loading, products, sort, cartItems, showCat } = this.state;
     const buying = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+    const minIndex = 10;
     return (
       <div>
         <Header quantity={ buying } title="FrontEnd Masters" />
@@ -125,26 +126,26 @@ export default class Search extends Component {
           {showCat ? 'Ocultar' : 'Mostrar mais categorias'}
         </button>
         {!loading && (
-              <section className="buttons-sect">
-                {categories.map((cat, index) => {
-                  if (index <= 10) {
-                    return (
-                      <CategoriesButtons
-                        key={ cat.id }
-                        id={ cat.id }
-                        category={ cat.name }
-                        handleClick={ this.handleClick }
-                      />
-                    )
-                  }
-                })}
-              </section>
-            )}
+          <section className="buttons-sect">
+            {categories.map((cat, index) => {
+              if (index <= minIndex) {
+                return (
+                  <CategoriesButtons
+                    key={ cat.id }
+                    id={ cat.id }
+                    category={ cat.name }
+                    handleClick={ this.handleClick }
+                  />
+                );
+              } return null;
+            })}
+          </section>
+        )}
         {showCat && (
           <section className="buttons-sect">
             {!loading && (
               categories.map((cat, index) => {
-                if (index > 10) {
+                if (index > minIndex) {
                   return (
                     <CategoriesButtons
                       key={ cat.id }
@@ -152,8 +153,8 @@ export default class Search extends Component {
                       category={ cat.name }
                       handleClick={ this.handleClick }
                     />
-                  )
-                }
+                  );
+                } return null;
               })
             )}
           </section>
