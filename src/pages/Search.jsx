@@ -20,6 +20,7 @@ export default class Search extends Component {
       categoryId: '',
       sort: '',
       cartItems: [],
+      showCat: false,
     };
   }
 
@@ -39,7 +40,10 @@ export default class Search extends Component {
   handleClick = ({ target }) => {
     const { id } = target;
     const { query } = this.state;
-    this.setState({ loading: true, categoryId: id }, () => this.getProducts(id, query));
+    this.setState({ loading: true,
+      categoryId: id,
+      showCat: false,
+    }, () => this.getProducts(id, query));
   }
 
   getProducts = async (categoryId = '', query = '') => {
@@ -63,6 +67,10 @@ export default class Search extends Component {
 
   handleSort = ({ target }) => {
     this.setState({ sort: target.value }, () => this.sortProd());
+  }
+
+  showCats = () => {
+    this.setState((prevSt) => ({ showCat: !prevSt.showCat }));
   }
 
   sortProd = () => {
@@ -89,52 +97,71 @@ export default class Search extends Component {
   }
 
   render() {
-    const { categories, loading, products, sort, cartItems } = this.state;
+    const { categories, loading, products, sort, cartItems, showCat } = this.state;
     const buying = cartItems.reduce((acc, item) => acc + item.quantity, 0);
     return (
       <div>
         <Header quantity={ buying } title="FrontEnd Masters" />
-        <section className="buttons-sect">
-          {loading ? <Loading /> : (
-            categories.map((cat) => (
-              <CategoriesButtons
-                key={ cat.id }
-                id={ cat.id }
-                category={ cat.name }
-                handleClick={ this.handleClick }
-              />
-            ))
-          )}
-        </section>
-        <select
-          name="sort"
-          onChange={ this.handleSort }
-          value={ sort }
-        >
-          <option value="">Ordenar</option>
-          <option value="asc">Menor preço</option>
-          <option value="dsc">Maior preço</option>
-        </select>
-        <input
-          type="text"
-          data-testid="query-input"
-          name="query"
-          onChange={ this.handleChange }
-          placeholder="Escreva um termo para sua pesquisa"
-        />
         <button
           type="button"
-          data-testid="query-button"
-          onClick={ this.searchProducts }
+          onClick={ this.showCats }
+          className="cat-toggle-btn"
         >
-          Pesquisar
+          {showCat ? 'Ocultar' : 'Mostrar categorias'}  
         </button>
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
+        {showCat && (
+          <section className="buttons-sect">
+            {loading ? <Loading /> : (
+              categories.map((cat) => (
+                <CategoriesButtons
+                  key={ cat.id }
+                  id={ cat.id }
+                  category={ cat.name }
+                  handleClick={ this.handleClick }
+                />
+              ))
+            )}
+          </section>
+        )}
+        <section className="search-sect">
+          <input
+            className="search-input"
+            type="text"
+            data-testid="query-input"
+            name="query"
+            onChange={ this.handleChange }
+            placeholder="Escreva um termo para sua pesquisa"
+          />
+          <button
+            className="search-btn"
+            type="button"
+            data-testid="query-button"
+            onClick={ this.searchProducts }
+          >
+            Pesquisar
+          </button>
+        </section>
+        {products.length === 0 && (
+          <p className="guide-p" data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>
+        )}
         {!loading && products.length > 0 && (
-          <section className="card-sect">
-            <p>{`Número de resultados: ${products.length}`}</p>
+          <select
+            className="search-select"
+            name="sort"
+            onChange={ this.handleSort }
+            value={ sort }
+          >
+            <option value="">Ordenar</option>
+            <option value="asc">Menor preço</option>
+            <option value="dsc">Maior preço</option>
+          </select>
+        )}
+        {!loading && products.length > 0 && (
+          <>
+          <p className="search-result">{`Número de resultados: ${products.length}`}</p>
+          <section className="cards-sect">
             {products.map((product) => (
               <ProductCard
                 key={ product.id }
@@ -146,6 +173,7 @@ export default class Search extends Component {
               />
             ))}
           </section>
+          </>
         )}
       </div>
     );

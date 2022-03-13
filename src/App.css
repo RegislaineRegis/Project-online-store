@@ -23,4 +23,5 @@
 
 body {
   background-color: var(--light-gray);
+  color: var(--gray1);
 }
