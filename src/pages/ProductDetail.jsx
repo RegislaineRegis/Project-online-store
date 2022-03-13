@@ -35,6 +35,7 @@ export default class ProductDetail extends Component {
       show: 'specs',
       picIndex: 0,
       zoom: false,
+      glow: '',
     };
   }
 
@@ -45,8 +46,15 @@ export default class ProductDetail extends Component {
 
   handleClick = () => {
     const { title, id, thumbnail, price, quantity, availableQuantity } = this.state;
-    shoppinCart.addItem({ title, id, thumbnail, price, quantity, availableQuantity });
-    this.setState({ cartItems: shoppinCart.getShoppingCart(), quantity: 1 });
+    this.setState({ glow: 'glow' }, () => {
+      shoppinCart.addItem({ title, id, thumbnail, price, quantity, availableQuantity });
+      const timeOut = 100;
+      setTimeout(() => {
+        this.setState({ cartItems: shoppinCart.getShoppingCart(),
+          quantity: 1,
+          glow: '' });
+      }, timeOut);
+    });
   }
 
   getProduct = async (id) => {
@@ -110,14 +118,14 @@ export default class ProductDetail extends Component {
     const { title, price, pictures, zoom, acceptsMercadopago,
       freeShipping, attributes, warranty, loading, cartItems,
       dateCreated, lastUpdated, condition, availableQuantity, status,
-      show, picIndex, quantity } = this.state;
+      show, picIndex, quantity, glow } = this.state;
     const buying = cartItems.reduce((acc, item) => acc + item.quantity, 0);
     const newPrice = price ? price.toFixed(2).replace(/\./gm, ',') : price;
     return (
       <section>
         {loading ? <Loading /> : (
           <section>
-            <Header quantity={ buying } title="FrontEnd Masters" />
+            <Header quantity={ buying } title="FrontEnd Masters" glow={ glow } />
             <section className="prod-dets-sect">
               <section className="dets-sect">
                 <section className="dets-header">

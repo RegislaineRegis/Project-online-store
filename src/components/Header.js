@@ -6,7 +6,7 @@ import '../styles/Header.css';
 
 class Header extends React.Component {
   render() {
-    const { quantity, title } = this.props;
+    const { quantity, title, glow } = this.props;
     return (
       <header>
         <Link to="/"><FaChevronLeft className="back-icon" /></Link>
@@ -19,8 +19,13 @@ class Header extends React.Component {
           data-testid="shopping-cart-button"
           className="shop-sect"
         >
-          <FaShoppingCart className="shopping-cart-icon" />
-          <p className="qtd-cart">{ quantity }</p>
+          <FaShoppingCart className={ `shopping-cart-icon ${glow}` } />
+          <p
+            className="qtd-cart"
+            data-testid="shopping-cart-size"
+          >
+            { quantity }
+          </p>
         </Link>
       </header>
     );
@@ -30,6 +35,11 @@ class Header extends React.Component {
 Header.propTypes = {
   quantity: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
+  glow: PropTypes.string,
+};
+
+Header.defaultProps = {
+  glow: '',
 };
 
 export default Header;

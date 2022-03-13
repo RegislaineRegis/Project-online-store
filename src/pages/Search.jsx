@@ -21,6 +21,7 @@ export default class Search extends Component {
       sort: '',
       cartItems: [],
       showCat: false,
+      glow: '',
     };
   }
 
@@ -105,18 +106,23 @@ export default class Search extends Component {
   }
 
   onClickAddProductCart = ({ title, id, thumbnail, price, availableQuantity }) => {
-    shoppinCart
-      .addItem({ title, id, thumbnail, price, quantity: 1, availableQuantity });
-    this.setState({ cartItems: shoppinCart.getShoppingCart() });
+    this.setState({ glow: 'glow' }, () => {
+      shoppinCart
+        .addItem({ title, id, thumbnail, price, quantity: 1, availableQuantity });
+      const timeOut = 100;
+      setTimeout(() => {
+        this.setState({ cartItems: shoppinCart.getShoppingCart(), glow: '' });
+      }, timeOut);
+    });
   }
 
   render() {
-    const { categories, loading, products, sort, cartItems, showCat } = this.state;
+    const { categories, loading, products, sort, cartItems, showCat, glow } = this.state;
     const buying = cartItems.reduce((acc, item) => acc + item.quantity, 0);
     const minIndex = 10;
     return (
       <div>
-        <Header quantity={ buying } title="FrontEnd Masters" />
+        <Header quantity={ buying } title="FrontEnd Masters" glow={ glow } />
         {loading && <Loading />}
         <button
           type="button"

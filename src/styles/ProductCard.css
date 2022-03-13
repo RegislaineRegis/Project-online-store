@@ -31,6 +31,14 @@
   background-color: var(--light-yellow);
 }
 
+.selected {
+  background-color: var(--light-yellow);
+}
+
+.selected:hover {
+  background-color: white;
+}
+
 .card-img {
   border-radius: 10px;
   height: auto;
