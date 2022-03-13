@@ -107,7 +107,7 @@ export default class Search extends Component {
           onClick={ this.showCats }
           className="cat-toggle-btn"
         >
-          {showCat ? 'Ocultar' : 'Mostrar categorias'}  
+          {showCat ? 'Ocultar' : 'Mostrar categorias'}
         </button>
         {showCat && (
           <section className="buttons-sect">
@@ -160,19 +160,19 @@ export default class Search extends Component {
         )}
         {!loading && products.length > 0 && (
           <>
-          <p className="search-result">{`Número de resultados: ${products.length}`}</p>
-          <section className="cards-sect">
-            {products.map((product) => (
-              <ProductCard
-                key={ product.id }
-                product={ product }
-                handleClick={ this.onClickAddProductCart }
-                className={ cartItems
-                  .some((item) => item.id === product.id)
-                  ? 'prod-card selected' : 'prod-card' }
-              />
-            ))}
-          </section>
+            <p className="search-result">{`Número de resultados: ${products.length}`}</p>
+            <section className="cards-sect">
+              {products.map((product) => (
+                <ProductCard
+                  key={ product.id }
+                  product={ product }
+                  handleClick={ this.onClickAddProductCart }
+                  className={ cartItems
+                    .some((item) => item.id === product.id)
+                    ? 'prod-card selected' : 'prod-card' }
+                />
+              ))}
+            </section>
           </>
         )}
       </div>

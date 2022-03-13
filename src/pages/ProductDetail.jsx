@@ -82,17 +82,17 @@ export default class ProductDetail extends Component {
 
   prevPic = () => {
     const { pictures } = this.state;
-    let { picIndex } = this.state
-    if (picIndex === 0) picIndex = pictures.length - 1;
-    else picIndex = picIndex - 1;
+    let { picIndex } = this.state;
+    picIndex = picIndex === 0
+      ? pictures.length - 1 : picIndex - 1;
     this.setState({ picIndex });
   }
 
   nextPic = () => {
     const { pictures } = this.state;
-    let { picIndex } = this.state
-    if (picIndex === pictures.length - 1) picIndex = 0;
-    else picIndex = picIndex + 1;
+    let { picIndex } = this.state;
+    const length = pictures.length - 1;
+    picIndex = picIndex === length ? 0 : picIndex + 1;
     this.setState({ picIndex });
   }
 
@@ -150,7 +150,12 @@ export default class ProductDetail extends Component {
         >
           Adicionar ao Carrinho
         </button>
-        {freeShipping && <p className="dets-ship"><FaBox className="dets-ship-icon" />Frete Grátis</p>}
+        {freeShipping && (
+          <p className="dets-ship">
+            <FaBox className="dets-ship-icon" />
+            Frete Grátis
+          </p>
+        )}
         <p className="dets-warr">{warranty}</p>
         <section>
           <h3
@@ -161,14 +166,14 @@ export default class ProductDetail extends Component {
             Especificações técnicas:
           </h3>
           <h3
-          className="dets-eval"
-          onClick={ () => this.changeClass('eval') }
-          role="presentation"
-        >
-          Avaliações:
-        </h3>
+            className="dets-eval"
+            onClick={ () => this.changeClass('eval') }
+            role="presentation"
+          >
+            Avaliações:
+          </h3>
         </section>
-          {show === 'specs' && <EspecificacoesTecnicas attributes={ attributes } />}
+        {show === 'specs' && <EspecificacoesTecnicas attributes={ attributes } />}
       </section>
     );
 
