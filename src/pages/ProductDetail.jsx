@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FaCheckCircle, FaBox, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import * as api from '../services/api';
 import * as shoppinCart from '../services/saveShoppingCart';
 import Loading from '../components/Loading';
@@ -27,6 +28,8 @@ export default class ProductDetail extends Component {
       loading: true,
       quantity: 1,
       cartItems: shoppinCart.getShoppingCart(),
+      show: 'specs',
+      picIndex: 0,
     };
   }
 
@@ -62,7 +65,7 @@ export default class ProductDetail extends Component {
       price,
       availableQuantity,
       condition,
-      pictures,
+      pictures: pictures.filter((pic) => pic.url),
       acceptsMercadopago,
       freeShipping,
       attributes,
@@ -73,10 +76,30 @@ export default class ProductDetail extends Component {
       loading: false });
   }
 
+  changeClass = (value) => {
+    this.setState({ show: value });
+  }
+
+  prevPic = () => {
+    const { pictures } = this.state;
+    let { picIndex } = this.state
+    if (picIndex === 0) picIndex = pictures.length - 1;
+    else picIndex = picIndex - 1;
+    this.setState({ picIndex });
+  }
+
+  nextPic = () => {
+    const { pictures } = this.state;
+    let { picIndex } = this.state
+    if (picIndex === pictures.length - 1) picIndex = 0;
+    else picIndex = picIndex + 1;
+    this.setState({ picIndex });
+  }
+
   render() {
     const { title, price, availableQuantity, condition, pictures,
       acceptsMercadopago, freeShipping, attributes, warranty, status,
-      dateCreated, lastUpdated, loading, cartItems } = this.state;
+      dateCreated, lastUpdated, loading, cartItems, show, picIndex } = this.state;
     const buying = cartItems.reduce((acc, item) => acc + item.quantity, 0);
     const created = dateCreated.split('T')[0].split('-').reverse().join('/');
     const updated = lastUpdated.split('T')[0].split('-').reverse().join('/');
@@ -84,31 +107,68 @@ export default class ProductDetail extends Component {
     const product = (
       <section>
         <Header quantity={ buying } title="FrontEnd Masters" />
-        <h1 data-testid="product-detail-name">{title}</h1>
-        <p>{`Condição: ${condition}`}</p>
-        <p>{`Criado em: ${created}`}</p>
-        <p>{`Ultima atualização: ${updated}`}</p>
-        <section className="imgDetails">
-          {pictures.filter((pic) => pic.url).map((pic) => (
-            <img key={ pic.id } src={ pic.url } alt={ title } />
-          ))}
+        <section>
+          <section className="dets-header">
+            <p className="dets-p">{`Criado em: ${created}`}</p>
+            <p className="dets-p">{`Ultima atualização: ${updated}`}</p>
+            <p className="dets-p">{`Condição: ${condition}`}</p>
+          </section>
+          <p className="dets-available">{ `${availableQuantity} und` }</p>
+          {status === 'active' && <FaCheckCircle className="dets-check" />}
         </section>
-        <p>{ `Quantidade disponível: ${availableQuantity}` }</p>
-        <h3>
-          { `Preço: R$ ${newPrice} - Status: ${status}` }
+        <section className="dets-title-sect">
+          <h1 className="dets-title" data-testid="product-detail-name">{title}</h1>
+          {acceptsMercadopago && <img className="dets-merc-pago" src="https://selectra.net.br/sites/selectra.net.br/files/styles/article_hero/public/images/mercado-pago-825x293.png?itok=rla5wE_U" alt="Aceita MercadoPago" />}
+        </section>
+        <section className="imgDetails">
+          <FaChevronLeft
+            className="prev-pic"
+            onClick={ this.prevPic }
+          />
+          <img
+            src={ pictures[picIndex] && pictures[picIndex].url }
+            alt={ `${title} - foto ${picIndex + 1}` }
+          />
+          <FaChevronRight
+            className="next-pic"
+            onClick={ this.nextPic }
+          />
+          {/* <section>
+            {pictures.map((pic, index) => (
+              <img src={ pic.url } alt={ `${title} - foto ${index + 1}` } />
+            ))}
+          </section> */}
+        </section>
+        <h3 className="dets-price">
+          { `R$ ${newPrice}` }
         </h3>
         <button
+          className="dets-add-cart-btn"
           type="button"
           data-testid="product-detail-add-to-cart"
           onClick={ this.handleClick }
         >
           Adicionar ao Carrinho
         </button>
-        {acceptsMercadopago && <img src="https://selectra.net.br/sites/selectra.net.br/files/styles/article_hero/public/images/mercado-pago-825x293.png?itok=rla5wE_U" alt="Aceita MercadoPago" />}
-        {freeShipping && <p>Frete Grátis</p>}
-        <p>{warranty}</p>
-        <h3>Especificações técnicas: </h3>
-        <EspecificacoesTecnicas attributes={ attributes } />
+        {freeShipping && <p className="dets-ship"><FaBox className="dets-ship-icon" />Frete Grátis</p>}
+        <p className="dets-warr">{warranty}</p>
+        <section>
+          <h3
+            className="dets-specs"
+            onClick={ () => this.changeClass('specs') }
+            role="presentation"
+          >
+            Especificações técnicas:
+          </h3>
+          <h3
+          className="dets-eval"
+          onClick={ () => this.changeClass('eval') }
+          role="presentation"
+        >
+          Avaliações:
+        </h3>
+        </section>
+          {show === 'specs' && <EspecificacoesTecnicas attributes={ attributes } />}
       </section>
     );
 
