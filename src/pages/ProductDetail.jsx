@@ -8,8 +8,8 @@ import Header from '../components/Header';
 import ProdDetsHeader from '../components/ProdDetsHeader';
 import ImagesProdDets from '../components/ImagesProdDets';
 import ProdDetsButtons from '../components/ProdDetsButtons';
-import '../styles/ProductDetails.css';
 import DetsTitle from '../components/DetsTitle';
+// import '../styles/ProductDetails.css';
 
 export default class ProductDetail extends Component {
   constructor() {
@@ -113,7 +113,7 @@ export default class ProductDetail extends Component {
   }
 
   render() {
-    const { title, price, pictures, zoom, acceptsMercadopago,
+    const { id, title, price, pictures, zoom, acceptsMercadopago,
       freeShipping, attributes, warranty, cartItems,
       dateCreated, lastUpdated, condition, availableQuantity, status,
       show, picIndex, quantity, glow } = this.state;
@@ -147,6 +147,7 @@ export default class ProductDetail extends Component {
             <section className="dets-galery">
               {pictures.map((pic, index) => (
                 <img
+                  width="30"
                   className="dets-galery-img"
                   id={ index }
                   key={ index }

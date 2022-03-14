@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FaBox } from 'react-icons/fa';
-import '../styles/ProductCard.css';
+// import '../styles/ProductCard.css';
 // requisito 15 - regislaine
 
 class ProductCard extends React.Component {
