@@ -1,29 +1,112 @@
+.cat-toggle-btn {
+  background-color: var(--yellow);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--light-gray);
+  color: var(--gray1);
+  cursor: pointer;
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 15px auto;
+  padding: 15px;
+}
+
+.cat-toggle-btn:hover {
+  background-color: var(--light-yellow);
+}
+
 .buttons-sect {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 20px auto;
+  margin: 10px auto 50px;
   width: 90%;
 }
 
 .cat-button {
-  background-color: var(--dark-blue);
-  color: var(--light-gray);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--gray3);
+  color: var(--gray1);
   cursor: pointer;
+  font-size: 1rem;
   font-weight: 600;
-  margin: 2px;
-  padding: 8px;
+  height: 150px;
+  margin: 3px;
+  width: 120px;
 }
 
 .cat-button:hover {
-  background-color: var(--light-gray);
-  color: var(--dark-blue);
-  padding: 10px;
+  background-color: var(--light-yellow);
+  height: 155px;
+  width: 125px;
 }
 
-.shopping-cart-icon {
-  color: var(--dark-blue);
-  height: 50px;
-  width: 50px;
+.search-sect {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 90%;
+}
+
+.search-input {
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--gray3);
+  flex-grow: 1;
+  margin: 0 15px;
+  padding: 15px;
+}
+
+.search-btn {
+  background-color: var(--yellow);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--gray3);
+  color: var(--gray1);
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 15px;
+}
+
+.search-btn:hover {
+  background-color: var(--light-yellow);
+}
+
+.guide-p {
+  color: var(--gray1);
+  margin: 20px auto;
+  text-align: center;
+  width: 90%;
+}
+
+.search-select {
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--gray3);
+  color: var(--gray1);
+  cursor: pointer;
+  display: block;
+  font-size: 1.2rem;
+  margin: 15px auto;
+  padding: 15px;
+}
+
+.search-result {
+  margin: 15px;
+}
+
+.search-select option {
+  font-size: 1.3rem;
+}
+
+@media screen and ( min-width : 1150px ) {
+
+  .search-input {
+    font-size: 1.5rem;
+  }
 }

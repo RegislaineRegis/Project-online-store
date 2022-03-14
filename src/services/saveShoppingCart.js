@@ -1,4 +1,11 @@
 const CART_KEY = 'shoppingCartItems';
+if (!localStorage.getItem('query')) {
+  localStorage.setItem('query', '');
+}
+
+if (!localStorage.getItem('catId')) {
+  localStorage.setItem('catId', '');
+}
 
 if (!localStorage.getItem(CART_KEY)) {
   localStorage.setItem(CART_KEY, JSON.stringify([]));
@@ -24,7 +31,10 @@ export const addItem = (item) => {
   let { quantity } = item;
   const cart = JSON.parse(localStorage.getItem(CART_KEY));
   if (cart.some((prod) => prod.id === item.id)) {
-    quantity = quantity < availableQuantity ? quantity + 1 : availableQuantity;
+    const prod = cart.find((myProd) => myProd.id === item.id);
+    quantity = quantity < availableQuantity
+      && quantity + prod.quantity < availableQuantity
+      ? quantity + prod.quantity : availableQuantity;
     const newItem = { id, title, thumbnail, availableQuantity, quantity };
     return updateItem(newItem);
   }

@@ -1,0 +1,286 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.prod-dets-sect {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.dets-sect {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--gray3);
+  margin: -50px auto 15px;
+  max-width: 500px;
+  width: 80%;
+}
+
+.dets-header {
+  align-items: center;
+  border-bottom: 1px solid var(--gray3);
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding: 15px;
+  width: 95%;
+}
+
+.dets-p {
+  font-size: 0.8rem;
+}
+
+.dets-head-side {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 27%;
+}
+
+.dets-check {
+  color: green;
+}
+
+.dets-title-sect {
+  display: flex;
+  margin: auto;
+  padding-top: 10px;
+  width: 90%;
+}
+
+.dets-title {
+  flex-grow: 1;
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.dets-merc-pago {
+  border-radius: 15px;
+  height: 50px;
+  object-fit: cover;
+  width: 55px;
+}
+
+.imgDetails {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.prev-pic, .next-pic {
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.dets-active-img {
+  cursor: pointer;
+  height: 350px;
+  max-width: 350px;
+  object-fit: scale-down;
+  width: 75%;
+}
+
+.zoom-img {
+  position: absolute;
+  top: 120px;
+  transform: scale(1.3);
+  z-index: 1;
+}
+
+.dets-galery {
+  display: flex;
+  height: 80px;
+  margin: auto;
+  overflow-x: scroll;
+  width: 90%;
+}
+
+.dets-galery-img {
+  border: 1px solid var(--gray3);
+  max-height: 90%;
+  width: auto;
+}
+
+.dets-price {
+  font-size: 2rem;
+}
+
+.btns-sect {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 15px auto;
+  width: 90%;
+}
+
+.dets-add-cart-btn {
+  align-items: center;
+  background-color: var(--light-yellow);
+  border: none;
+  border-radius: 5px;
+  color: var(--gray1);
+  cursor: pointer;
+  display: flex;
+  font-weight: 600;
+  justify-content: space-around;
+  padding: 10px;
+  width: 50%;
+}
+
+.dets-cart-less-btn, .dets-cart-more-btn {
+  background-color: var(--light-yellow);
+  border: none;
+  border-radius: 5px;
+  color: var(--gray2);
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 600;
+  height: 50px;
+  width: 50px;
+}
+
+.dets-add-cart-btn:hover, .dets-cart-less-btn:hover, .dets-cart-more-btn:hover {
+  background-color: var(--yellow);
+}
+
+.dets-shop-cart-icon {
+  height: 30px;
+  width: 30px;
+}
+
+.dets-und {
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+.ship-price-sect {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px auto;
+  width: 90%;
+}
+
+.dets-ship {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1rem;
+  justify-content: space-between;
+}
+
+.dets-warr {
+  font-size: 1.2rem;
+  margin: auto;
+  padding: 5px 1px 15px;
+  text-align: center;
+  width: 90%;
+}
+
+.specs-eval-sect {
+  border-bottom: 1px solid var(--gray3);
+  color: var(--gray3);
+  display: flex;
+  justify-content: space-around;
+  margin: 20px auto 30px;
+  width: 90%;
+}
+
+.dets-specs, .dets-eval {
+  cursor: pointer;
+}
+
+.specs, .eval {
+  border-bottom: 2px solid var(--gray1);
+  color: var(--gray2);
+}
+
+.specs-sect {
+  height: 150px;
+  margin: 5px auto 50px;
+  overflow: scroll;
+  width: 90%;
+}
+
+.spec-li {
+  background-color: var(--light-gray3);
+  font-size: 1.2rem;
+  line-height: 2rem;
+  list-style: none;
+  margin: 5px;
+}
+
+.spec-attr {
+  font-weight: 700;
+}
+
+.eval-btn {
+  background-color: var(--yellow);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--gray3);
+  color: var(--gray1);
+  cursor: pointer;
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 50px auto 15px;
+  padding: 15px;
+}
+
+.eval-btn:hover {
+  background-color: var(--light-yellow);
+}
+
+.eval-link {
+  text-decoration: none;
+}
+
+.eval-sect {
+  margin-bottom: 80px;
+}
+
+@media screen and ( min-width : 1150px ) {
+
+  .prod-dets-sect {
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 30px auto 80px;
+    width: 90%;
+  }
+
+  .dets-sect {
+    margin: 15px;
+  }
+
+  .dets-title {
+    font-size: 1.5rem;
+  }
+
+  .prev-pic, .next-pic {
+    font-size: 2rem;
+  }
+
+  .zoom-img {
+    left: 250px;
+    top: 200px;
+    transform: scale(2.5);
+  }
+
+  .dets-spec-eval {
+    flex-grow: 1;
+  }
+
+  .dets-specs, .dets-eval {
+    font-size: 1.5rem;
+  }
+
+  .specs-sect {
+    height: auto;
+    overflow: hidden;
+  }
+}

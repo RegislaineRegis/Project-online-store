@@ -19,10 +19,10 @@
 
 .loading {
   animation: 1.5s linear infinite spin;
-  border: 12px solid var(--light-gray);
-  border-bottom-color: var(--light-blue);
+  border: 12px solid var(--light-gray3);
+  border-bottom-color: var(--yellow);
   border-radius: 50%;
-  height: 30px;
+  height: 50px;
   margin: 2% auto 5%;
-  width: 30px;
+  width: 50px;
 }

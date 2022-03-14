@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { FaBox } from 'react-icons/fa';
+// import '../styles/ProductCard.css';
 // requisito 15 - regislaine
 
 class ProductCard extends React.Component {
@@ -15,16 +17,30 @@ class ProductCard extends React.Component {
         data-testid="product"
         className={ className }
       >
-        <h2>{title}</h2>
-        <img src={ thumbnail } alt={ title } />
-        <p>{`R$ ${price ? price.toFixed(2).replace(/\./gm, ',') : 'Sob consulta'}`}</p>
+        <h2 className="card-title">{title}</h2>
+        <img className="card-img" src={ thumbnail } alt={ title } />
+        <p className="card-price">
+          {`R$ ${price
+            ? price.toFixed(2).replace(/\./gm, ',')
+            : 'Sob consulta'}`}
+        </p>
 
-        {freeShipping && <p data-testid="free-shipping">Frete grátis</p>}
-        <Link data-testid="product-detail-link" to={ `/product/${id}` }>
+        {freeShipping && (
+          <p className="card-ship" data-testid="free-shipping">
+            <FaBox />
+            Frete grátis
+          </p>
+        )}
+        <Link
+          className="card-link"
+          data-testid="product-detail-link"
+          to={ `/product/${id}` }
+        >
           Detalhes do produto
         </Link>
 
         <button
+          className="card-add-cart"
           data-testid="product-add-to-cart"
           type="button"
           id={ id }
