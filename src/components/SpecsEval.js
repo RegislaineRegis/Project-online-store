@@ -5,7 +5,7 @@ import EspecificacoesTecnicas from './EspecificacoesTecnicas';
 
 class SpecsEval extends React.Component {
   render() {
-    const { show, changeClass, attributes } = this.props;
+    const { show, changeClass, attributes, id } = this.props;
     return (
       <>
         <section className="specs-eval-sect">
@@ -27,7 +27,7 @@ class SpecsEval extends React.Component {
         {show === 'specs' && <EspecificacoesTecnicas attributes={ attributes } />}
         <section className="eval-sect">
           {show === 'eval' && (
-            <Link className="eval-link" to="/evaluation/forms">
+            <Link className="eval-link" to={ `/product/${id}/evaluation/forms` }>
               <button type="button" className="eval-btn">Avaliar produto</button>
             </Link>
           )}
@@ -38,6 +38,7 @@ class SpecsEval extends React.Component {
 }
 
 SpecsEval.propTypes = {
+  id: PropTypes.string.isRequired,
   show: PropTypes.string.isRequired,
   changeClass: PropTypes.func.isRequired,
   attributes: PropTypes.arrayOf(

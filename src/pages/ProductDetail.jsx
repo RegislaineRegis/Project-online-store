@@ -183,6 +183,7 @@ export default class ProductDetail extends Component {
               show={ show }
               changeClass={ this.changeClass }
               attributes={ attributes }
+              id={ id }
             />
           </section>
         </section>
