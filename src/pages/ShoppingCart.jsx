@@ -23,6 +23,7 @@ export default class ShoppingCart extends Component {
     const { id, title, price, thumbnail, availableQuantity } = product;
     let { quantity } = product;
     quantity = quantity === 0 ? 0 : quantity - 1;
+    console.log('rmv', quantity)
     const newProd = { id, title, price, thumbnail, quantity, availableQuantity };
     if (quantity === 0) {
       alert('Esse produto será removido do seu carrinho');

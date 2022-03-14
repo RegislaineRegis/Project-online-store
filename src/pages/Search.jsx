@@ -68,8 +68,6 @@ export default class Search extends Component {
     this.setState({ sort: target.value }, () => this.sortProd());
   };
 
-  showCats = () => this.setState((prevSt) => ({ showCat: !prevSt.showCat }));
-
   sortProd = () => {
     const { products, sort } = this.state;
     let newList = products;
@@ -88,12 +86,13 @@ export default class Search extends Component {
   }
 
   onClickAddProductCart = ({ title, id, thumbnail, price, availableQuantity }) => {
+    console.log(title)
     this.setState({ glow: 'glow' }, () => {
       const prod = { title, id, thumbnail, price, quantity: 1, availableQuantity };
-      const { cartItems } = this.state;
+      console.log('onClick', prod.quantity)
       shoppinCart.addItem(prod);
       const timeOut = 50;
-      this.setState({ cartItems: [...cartItems, prod] }, () => {
+      this.setState({ cartItems: shoppinCart.getShoppingCart() }, () => {
         setTimeout(() => {
           this.setState({ glow: '' });
         }, timeOut);
@@ -104,18 +103,10 @@ export default class Search extends Component {
   render() {
     const { categories, loading, products, sort, cartItems, showCat, glow } = this.state;
     const buying = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-    // const minIndex = 10;
     return (
       <div>
         <Header quantity={ buying } title="FrontEnd Masters" glow={ glow } />
         {loading && <Loading />}
-        {/* <button
-          type="button"
-          onClick={ this.showCats }
-          className="cat-toggle-btn"
-        >
-          {showCat ? 'Ocultar' : 'Mostrar mais categorias'}
-        </button> */}
         {showCat && !loading && (
           <section className="buttons-sect">
             {!loading && (
@@ -173,7 +164,6 @@ export default class Search extends Component {
                 <ProductCard
                   key={ product.id }
                   product={ product }
-                  handleClick={ this.onClickAddProductCart }
                   className={ cartItems
                     .some((item) => item.id === product.id)
                     ? 'prod-card selected' : 'prod-card' }
