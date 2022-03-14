@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import EspecificacoesTecnicas from './EspecificacoesTecnicas';
 
 class SpecsEval extends React.Component {
@@ -24,7 +25,13 @@ class SpecsEval extends React.Component {
           </h3>
         </section>
         {show === 'specs' && <EspecificacoesTecnicas attributes={ attributes } />}
-        {show === 'eval'}
+        <section className="eval-sect">
+          {show === 'eval' && (
+            <Link className="eval-link" to="/evaluation/forms">
+              <button type="button" className="eval-btn">Avaliar produto</button>
+            </Link>
+          )}
+        </section>
       </>
     );
   }

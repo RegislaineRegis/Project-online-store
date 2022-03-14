@@ -6,7 +6,7 @@ class ImagesProdDets extends React.Component {
   render() {
     const { pictures, picIndex, title, zoom, prevPic, nextPic, zoomImg } = this.props;
     return (
-      <>
+      <section className="imgDetails">
         {pictures.length > 0 && (
           <FaChevronLeft
             className="prev-pic"
@@ -26,7 +26,7 @@ class ImagesProdDets extends React.Component {
             onClick={ nextPic }
           />
         )}
-      </>
+      </section>
     );
   }
 }

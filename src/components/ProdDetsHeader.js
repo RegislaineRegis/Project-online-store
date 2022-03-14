@@ -8,7 +8,7 @@ class ProdDetsHeader extends React.Component {
     const created = dateCreated.split('T')[0].split('-').reverse().join('/');
     const updated = lastUpdated.split('T')[0].split('-').reverse().join('/');
     return (
-      <>
+      <section className="dets-header">
         <section>
           <p className="dets-p">{`Criado em: ${created}`}</p>
           <p className="dets-p">{`Ultima atualização: ${updated}`}</p>
@@ -18,7 +18,7 @@ class ProdDetsHeader extends React.Component {
           <p className="dets-available">{ `${availableQuantity} und` }</p>
           {status === 'active' && <FaCheckCircle className="dets-check" />}
         </section>
-      </>
+      </section>
     );
   }
 }

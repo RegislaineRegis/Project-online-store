@@ -27,21 +27,7 @@ export default class Search extends Component {
 
   componentDidMount() {
     this.requestCategories();
-    this.setState({ cartItems: shoppinCart.getShoppingCart(),
-      query: localStorage.getItem('query'),
-      categoryId: localStorage.getItem('catId'),
-    }, () => {
-      const { query, categoryId } = this.state;
-      if (query || categoryId) {
-        this.getProducts(categoryId, query);
-      }
-    });
-  }
-
-  componentWillUnmount() {
-    const { query, categoryId } = this.state;
-    localStorage.setItem('query', query);
-    localStorage.setItem('catId', categoryId);
+    this.setState({ cartItems: shoppinCart.getShoppingCart() });
   }
 
   requestCategories = async () => {
@@ -76,17 +62,13 @@ export default class Search extends Component {
     this.setState({ products, loading: false });
   }
 
-  handleChange = ({ target }) => {
-    this.setState({ query: target.value });
-  }
+  handleChange = ({ target }) => this.setState({ query: target.value });
 
   handleSort = ({ target }) => {
     this.setState({ sort: target.value }, () => this.sortProd());
-  }
+  };
 
-  showCats = () => {
-    this.setState((prevSt) => ({ showCat: !prevSt.showCat }));
-  }
+  showCats = () => this.setState((prevSt) => ({ showCat: !prevSt.showCat }));
 
   sortProd = () => {
     const { products, sort } = this.state;
@@ -107,12 +89,15 @@ export default class Search extends Component {
 
   onClickAddProductCart = ({ title, id, thumbnail, price, availableQuantity }) => {
     this.setState({ glow: 'glow' }, () => {
-      shoppinCart
-        .addItem({ title, id, thumbnail, price, quantity: 1, availableQuantity });
-      const timeOut = 100;
-      setTimeout(() => {
-        this.setState({ cartItems: shoppinCart.getShoppingCart(), glow: '' });
-      }, timeOut);
+      const prod = { title, id, thumbnail, price, quantity: 1, availableQuantity };
+      const { cartItems } = this.state;
+      shoppinCart.addItem(prod);
+      const timeOut = 50;
+      this.setState({ cartItems: [...cartItems, prod] }, () => {
+        setTimeout(() => {
+          this.setState({ glow: '' });
+        }, timeOut);
+      });
     });
   }
 
@@ -147,7 +132,7 @@ export default class Search extends Component {
             })}
           </section>
         )}
-        {showCat && (
+        {showCat && !loading && (
           <section className="buttons-sect">
             {!loading && (
               categories.map((cat, index) => {

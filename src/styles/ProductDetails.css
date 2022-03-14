@@ -194,7 +194,7 @@
 }
 
 .specs, .eval {
-  border-bottom: 1px solid var(--gray1);
+  border-bottom: 2px solid var(--gray1);
   color: var(--gray2);
 }
 
@@ -215,6 +215,32 @@
 
 .spec-attr {
   font-weight: 700;
+}
+
+.eval-btn {
+  background-color: var(--yellow);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--gray3);
+  color: var(--gray1);
+  cursor: pointer;
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 50px auto 15px;
+  padding: 15px;
+}
+
+.eval-btn:hover {
+  background-color: var(--light-yellow);
+}
+
+.eval-link {
+  text-decoration: none;
+}
+
+.eval-sect {
+  margin-bottom: 80px;
 }
 
 @media screen and ( min-width : 1150px ) {
