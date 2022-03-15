@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 import EspecificacoesTecnicas from './EspecificacoesTecnicas';
+import AvaliatorProd from './AvaliatorProd';
 
 class SpecsEval extends React.Component {
   render() {
     // props a adicionar: show, changeClass, id
-    const { attributes } = this.props;
+    const { attributes, id } = this.props;
     return (
       <>
         <section className="specs-eval-sect">
@@ -23,6 +24,7 @@ class SpecsEval extends React.Component {
           <h3>
             Avaliações
           </h3>
+          <AvaliatorProd id={ id } />
         </section>
         {/* {show === 'specs' && <EspecificacoesTecnicas attributes={ attributes } />}
         <section className="eval-sect">
@@ -38,7 +40,7 @@ class SpecsEval extends React.Component {
 }
 
 SpecsEval.propTypes = {
-  // id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   // show: PropTypes.string.isRequired,
   // changeClass: PropTypes.func.isRequired,
   attributes: PropTypes.arrayOf(

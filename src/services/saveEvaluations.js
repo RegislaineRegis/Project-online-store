@@ -1,9 +1,8 @@
 export const saveEvaluation = (productId, evaluation) => {
   const EVALUATION_KEY = `evaluation-${productId}`;
-  const evaluations = localStorage.getItem(EVALUATION_KEY);
-  localStorage.setItem(EVALUATION_KEY, evaluations
-    ? JSON.stringify([...evaluations, evaluation])
-    : JSON.stringify([evaluation]));
+  const evaluations = JSON.parse(localStorage.getItem(EVALUATION_KEY));
+  const newEval = evaluations ? [...evaluations, evaluation] : [evaluation];
+  localStorage.setItem(EVALUATION_KEY, JSON.stringify(newEval));
 };
 
 export const getEvaluations = (productId) => {
