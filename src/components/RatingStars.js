@@ -9,8 +9,6 @@ export default class RatingStars extends Component {
     const five = 5;
     const four = 4;
     const three = 3;
-    const checkClass = 'rate-label checked';
-    const noCheckClass = 'rate-label';
     return (
       <fieldset className={ className } onChange={ handleRateChange }>
         <label
