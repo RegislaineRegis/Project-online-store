@@ -80,8 +80,6 @@ export default class Search extends Component {
     this.setState({ products: newList });
   }
 
-  showCats = () => this.setState((prevSt) => ({ showCat: !prevSt.showCat }));
-
   searchProducts = () => {
     const { query, categoryId } = this.state;
     this.getProducts(categoryId, query);
@@ -101,6 +99,8 @@ export default class Search extends Component {
     });
   }
 
+  showCats = () => this.setState((prevSt) => ({ showCat: !prevSt.showCat }));
+
   render() {
     const { categories, loading, products, sort, cartItems, showCat, glow } = this.state;
     const buying = cartItems.reduce((acc, item) => acc + item.quantity, 0);
@@ -108,14 +108,13 @@ export default class Search extends Component {
       <div>
         <Header quantity={ buying } title="FrontEnd Masters" glow={ glow } />
         {loading && <Loading />}
-
         <button
           type="button"
           onClick={ this.showCats }
           className="cat-toggle-btn"
         >
-          {showCat ? 'Ocultar' : 'Mostrar mais categorias'}
-        </button> 
+          {showCat ? 'Ocultar' : 'Mostrar categorias'}
+        </button>
         {showCat && !loading && (
           <section className="buttons-sect">
             {categories.map((cat) => (

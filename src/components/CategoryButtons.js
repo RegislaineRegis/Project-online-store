@@ -12,7 +12,7 @@ class CategoryButtons extends React.Component {
         id={ id }
         onClick={ handleClick }
       >
-        <p className="btn-text">{category}</p>
+        {category}
       </button>
     );
   }
