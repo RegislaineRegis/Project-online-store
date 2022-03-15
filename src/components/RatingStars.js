@@ -7,10 +7,12 @@ export default class RatingStars extends Component {
     const five = 5;
     const four = 4;
     const three = 3;
+    const checkClass = 'rate-label checked';
+    const noCheckClass = 'rate-label';
     return (
       <fieldset className="rating" onChange={ handleRateChange }>
         <label
-          className={ rate === five ? 'rate-label checked' : 'rate-label' }
+          className={ rate === five ? checkClass : noCheckClass }
           data-testid="5-rating"
           role="presentation"
           htmlFor="five"
@@ -26,7 +28,7 @@ export default class RatingStars extends Component {
           ★
         </label>
         <label
-          className={ rate >= four ? 'rate-label checked' : 'rate-label' }
+          className={ rate >= four ? checkClass : noCheckClass }
           data-testid="4-rating"
           role="presentation"
           htmlFor="four"
@@ -42,7 +44,7 @@ export default class RatingStars extends Component {
           ★
         </label>
         <label
-          className={ rate >= three ? 'rate-label checked' : 'rate-label' }
+          className={ rate >= three ? checkClass : noCheckClass }
           data-testid="3-rating"
           role="presentation"
           htmlFor="three"
@@ -58,7 +60,7 @@ export default class RatingStars extends Component {
           ★
         </label>
         <label
-          className={ rate >= 2 ? 'rate-label checked' : 'rate-label' }
+          className={ rate >= 2 ? checkClass : noCheckClass }
           data-testid="2-rating"
           role="presentation"
           htmlFor="two"
@@ -74,7 +76,7 @@ export default class RatingStars extends Component {
           ★
         </label>
         <label
-          className={ rate >= 1 ? 'rate-label checked' : 'rate-label' }
+          className={ rate >= 1 ? checkClass : noCheckClass }
           data-testid="1-rating"
           role="presentation"
           htmlFor="one"
