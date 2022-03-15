@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/AvaliatorProd.css';
+import { Redirect } from 'react-router-dom';
 import * as saveEvaluations from '../services/saveEvaluations';
 import * as api from '../services/api';
 import * as shoppinCart from '../services/saveShoppingCart';
 import RatingStars from './RatingStars';
-import { Redirect } from 'react-router-dom';
 import Header from './Header';
 
 export default class AvaliatorProd extends Component {
@@ -74,14 +74,15 @@ export default class AvaliatorProd extends Component {
   }
 
   render() {
-    const { id, rate, email, evalue, disabled, saved, title, price, picture, cartItems } = this.state;
+    const { id, rate, email, evalue, disabled, saved,
+      title, price, picture, cartItems } = this.state;
     const quantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
     return (
       <div>
         <Header title="FrontEnd Masters" quantity={ quantity } />
         <section className="eval-form-sect">
           <section className="eval-prod-sect">
-              <img src={ picture.url } alt={ title } />
+            <img src={ picture.url } alt={ title } />
             <section className="title-price-sect">
               <h2>{ title }</h2>
               <p>{ `Preço: R$ ${price}` }</p>
@@ -99,7 +100,11 @@ export default class AvaliatorProd extends Component {
                 onChange={ this.handleChange }
                 placeholder="E-mail"
               />
-              <RatingStars className="rating" rate={ rate } handleRateChange={ this.handleRateChange } />
+              <RatingStars
+                className="rating"
+                rate={ rate }
+                handleRateChange={ this.handleRateChange }
+              />
             </section>
             <textarea
               className="rate-textarea"
@@ -131,6 +136,6 @@ AvaliatorProd.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string,
-    })
+    }),
   }).isRequired,
 };

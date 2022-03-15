@@ -105,4 +105,4 @@ RatingStars.propTypes = {
 RatingStars.defaultProps = {
   handleRateChange: null,
   className: 'rating',
-}
+};

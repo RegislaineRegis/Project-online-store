@@ -7,42 +7,28 @@ import Evals from './Evals';
 import RatingStars from './RatingStars';
 
 class SpecsEval extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      evaluations: [],
-    }
-  }
-
-  componentDidMount() {
-    const { id } = this.props;
-    this.setState({ evaluations: saveEvaluations.getEvaluations(id) || [] });
-  }
-
   render() {
     const { attributes, id, show, changeClass } = this.props;
     const evaluations = saveEvaluations.getEvaluations(id);
-    
     const score = evaluations && evaluations.reduce((acc, { rate }, index, arr) => {
       const length = arr.length - 1;
       if (index < length) return acc + rate;
-      return (acc + rate)/(length + 1);
+      return (acc + rate) / (length + 1);
     }, 0);
-    console.log(score);
     return (
       <>
         <section className="specs-eval-sect">
           <h3
-          className={ `dets-specs ${show === 'specs' ? show : ''}` }
-          onClick={ () => changeClass('specs') }
-          role="presentation"
+            className={ `dets-specs ${show === 'specs' ? show : ''}` }
+            onClick={ () => changeClass('specs') }
+            role="presentation"
           >
             Especificações técnicas
           </h3>
           <h3
-          className={ `dets-eval ${show === 'eval' ? show : ''}` }
-          onClick={ () => changeClass('eval') }
-          role="presentation"
+            className={ `dets-eval ${show === 'eval' ? show : ''}` }
+            onClick={ () => changeClass('eval') }
+            role="presentation"
           >
             Avaliações
           </h3>

@@ -6,6 +6,7 @@ import '../styles/Checkout.css';
 import CartItem from '../components/CartItem';
 import Header from '../components/Header';
 import * as cartFunction from '../services/saveShoppingCart';
+import InputRadio from '../components/InputRadio';
 
 export default class Checkout extends Component {
   constructor() {
@@ -126,38 +127,41 @@ export default class Checkout extends Component {
                 onChange={ this.handleChange }
               />
             </fieldset>
-            <fieldset  className="checkout-fieldset">
+            <fieldset className="checkout-fieldset">
               <legend className="checkout-legend">Método de pagamento</legend>
-              <label className="checkout-label" htmlFor="boleto">
-                <input className="checkout-radio" type="radio" name="pay-method" id="boleto" />
-                <FaBarcode className="checkout-icon" />
-              </label>
-              <label className="checkout-label" htmlFor="visa">
-                <input className="checkout-radio" type="radio" name="pay-method" id="visa" />
-                VISA
-                {' '}
-                <FaCcVisa className="checkout-icon" />
-              </label>
-              <label className="checkout-label" htmlFor="master">
-                <input className="checkout-radio" type="radio" name="pay-method" id="master" />
-                MasterCard
-                {' '}
-                <FaCcMastercard className="checkout-icon" />
-              </label>
-              <label className="checkout-label" htmlFor="elo">
-                <input className="checkout-radio" type="radio" name="pay-method" id="elo" />
-                Elo
-                {' '}
-                <FaCreditCard className="checkout-icon" />
-              </label>
-              <label className="checkout-label" htmlFor="american">
-                <input className="checkout-radio" type="radio" name="pay-method" id="american" />
-                American Express
-                {' '}
-                <SiAmericanexpress className="checkout-icon" />
-              </label>
+              <InputRadio
+                id="boleto"
+                text="Boleto"
+                childComp={ <FaBarcode className="checkout-icon" /> }
+              />
+              <InputRadio
+                id="visa"
+                text="Visa"
+                childComp={ <FaCcVisa className="checkout-icon" /> }
+              />
+              <InputRadio
+                id="master"
+                text="MasterCard"
+                childComp={ <FaCcMastercard className="checkout-icon" /> }
+              />
+              <InputRadio
+                id="elo"
+                text="Elo"
+                childComp={ <FaCreditCard className="checkout-icon" /> }
+              />
+              <InputRadio
+                id="american"
+                text="American Express"
+                childComp={ <SiAmericanexpress className="checkout-icon" /> }
+              />
             </fieldset>
-            <button className="checkout-btn" type="button" onClick={ this.handleClick }>Finalizar Compra</button>
+            <button
+              className="checkout-btn"
+              type="button"
+              onClick={ this.handleClick }
+            >
+              Finalizar Compra
+            </button>
           </form>
         </section>
         { clicked && <Redirect to="/" /> }
