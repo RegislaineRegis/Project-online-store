@@ -10,13 +10,14 @@ export default class RatingStars extends Component {
     return (
       <fieldset className="rating" onChange={ handleRateChange }>
         <label
-          className={ rate === five && 'checked' }
+          className={ rate === five ? 'rate-label checked' : 'rate-label' }
           data-testid="5-rating"
           role="presentation"
           htmlFor="five"
           name="rate"
         >
           <input
+            className="input-radio"
             type="radio"
             id="five"
             value="5"
@@ -25,13 +26,14 @@ export default class RatingStars extends Component {
           ★
         </label>
         <label
-          className={ rate >= four && 'checked' }
+          className={ rate >= four ? 'rate-label checked' : 'rate-label' }
           data-testid="4-rating"
           role="presentation"
           htmlFor="four"
           name="rate"
         >
           <input
+            className="input-radio"
             type="radio"
             id="four"
             value="4"
@@ -40,13 +42,14 @@ export default class RatingStars extends Component {
           ★
         </label>
         <label
-          className={ rate >= three && 'checked' }
+          className={ rate >= three ? 'rate-label checked' : 'rate-label' }
           data-testid="3-rating"
           role="presentation"
           htmlFor="three"
           name="rate"
         >
           <input
+            className="input-radio"
             type="radio"
             id="three"
             value="3"
@@ -55,13 +58,14 @@ export default class RatingStars extends Component {
           ★
         </label>
         <label
-          className={ rate >= 2 && 'checked' }
+          className={ rate >= 2 ? 'rate-label checked' : 'rate-label' }
           data-testid="2-rating"
           role="presentation"
           htmlFor="two"
           name="rate"
         >
           <input
+            className="input-radio"
             type="radio"
             id="two"
             value="2"
@@ -70,13 +74,14 @@ export default class RatingStars extends Component {
           ★
         </label>
         <label
-          className={ rate >= 1 && 'checked' }
+          className={ rate >= 1 ? 'rate-label checked' : 'rate-label' }
           data-testid="1-rating"
           role="presentation"
           htmlFor="one"
           name="rate"
         >
           <input
+            className="input-radio"
             type="radio"
             id="one"
             value="1"

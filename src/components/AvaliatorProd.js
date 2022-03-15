@@ -9,7 +9,7 @@ export default class AvaliatorProd extends Component {
   constructor() {
     super();
     this.state = {
-      rate: 1,
+      rate: 0,
       email: '',
       evalue: '',
       disabled: true,
@@ -23,6 +23,10 @@ export default class AvaliatorProd extends Component {
     const { rate, email, evalue } = this.state;
     const newEval = { id: Math.random(), prod: id, email, evalue, rate };
     this.setState((prevSt) => ({
+      rate: 0,
+      email: '',
+      evalue: '',
+      disabled: true,
       evaluations: [...prevSt.evaluations, newEval],
     }));
     saveEvaluations.saveEvaluation(id, newEval);
@@ -30,18 +34,10 @@ export default class AvaliatorProd extends Component {
 
   handleChange = ({ target }) => {
     const { name, value } = target;
-    console.log(target);
+    console.log(target.name, target.value);
     this.setState({
       [name]: value,
     }, () => this.validationBtn());
-  }
-
-  chooseRate = (event) => {
-    event.preventDefault();
-    const { title } = event.target;
-    this.setState({
-      rate: parseFloat(title),
-    });
   }
 
   validationBtn = () => {
@@ -74,11 +70,11 @@ export default class AvaliatorProd extends Component {
             placeholder="E-mail"
           />
           <RatingStars rate={ rate } handleRateChange={ this.handleRateChange } />
-          <input
+          <textarea
+            className="dets-eval"
             name="evalue"
             value={ evalue }
             data-testid="product-detail-evaluation"
-            type="text-area"
             id="comment"
             placeholder="Insira um comentário sobre a avaliação:"
             onChange={ this.handleChange }

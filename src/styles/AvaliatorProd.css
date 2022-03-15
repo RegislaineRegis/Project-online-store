@@ -1,28 +1,30 @@
 .rating {
-    width: 226px;
-    margin: auto;
-    font-size: 45px;
-    overflow: hidden;
-    direction: rtl;
-    border: none;
+  border: none;
+  direction: rtl;
+  font-size: 45px;
+  margin: auto;
+  overflow: hidden;
+  width: 226px;
 }
+
 .rating label {
-    float: right;
-    color: #aaa;
-    text-decoration: none;
-    transition: color 0.2s;
+  color: #aaa;
+  float: right;
+  text-decoration: none;
+  transition: color 0.2s;
 }
-.rating label:hover, .rating label:hover ~ label, .rating label:focus, .rating label:focus ~ label {
-    color: yellow;
-    cursor: pointer;
+
+.rate-label:hover, .rate-label:hover ~ label {
+  color: yellow;
+  cursor: pointer;
 }
+
 .checked {
-    color: yellow !important;
+
+  /* stylelint-disable-next-line declaration-no-important */
+  color: yellow ! important;
 }
-input[type="radio"] {
-    display: none;
-}
-.specs-eval-sect {
-    display: flex;
-    flex-wrap: wrap;
+
+.input-radio {
+  display: none;
 }
