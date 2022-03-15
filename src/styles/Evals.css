@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.eval-card {
+  background-color: var(--light-gray3);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: space-between;
+  margin: 15px;
+  padding: 8px;
+}
+
+.eval-line {
+  align-items: center;
+  display: flex;
+}
+
+.eval-email {
+  font-size: 1.2rem;
+  margin-right: 20px;
+}
+
+.rating2 {
+  border: none;
+  direction: rtl;
+  font-size: 1.5rem;
+  overflow: hidden;
+}
+
+.rating3 {
+  border: none;
+  direction: rtl;
+  font-size: 2rem;
+  margin-left: 10px;
+  overflow: hidden;
+}
+
+.eval-score {
+  align-items: center;
+  display: flex;
+  font-size: 2rem;
+  margin: 5px 30px;
+  width: 40%;
+}

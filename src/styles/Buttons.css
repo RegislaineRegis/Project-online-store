@@ -2,7 +2,7 @@
   background-color: var(--yellow);
   border: none;
   border-radius: 5px;
-  box-shadow: 0 0 10px var(--light-gray);
+  box-shadow: 0 0 10px var(--light-gray2);
   color: var(--gray1);
   cursor: pointer;
   display: block;
@@ -28,7 +28,7 @@
 .cat-button {
   border: none;
   border-radius: 10px;
-  box-shadow: 0 0 10px var(--gray3);
+  box-shadow: 0 0 10px var(--light-gray2);
   color: var(--gray1);
   cursor: pointer;
   font-size: 1rem;
@@ -54,7 +54,7 @@
 .search-input {
   border: none;
   border-radius: 5px;
-  box-shadow: 0 0 10px var(--gray3);
+  box-shadow: 0 0 10px var(--light-gray2);
   flex-grow: 1;
   margin: 0 15px;
   padding: 15px;
@@ -64,7 +64,7 @@
   background-color: var(--yellow);
   border: none;
   border-radius: 5px;
-  box-shadow: 0 0 10px var(--gray3);
+  box-shadow: 0 0 10px var(--light-gray2);
   color: var(--gray1);
   cursor: pointer;
   font-size: 1.1rem;
@@ -87,7 +87,7 @@
   background-color: white;
   border: none;
   border-radius: 5px;
-  box-shadow: 0 0 10px var(--gray3);
+  box-shadow: 0 0 10px var(--light-gray2);
   color: var(--gray1);
   cursor: pointer;
   display: block;

@@ -27,7 +27,19 @@ export default class Search extends Component {
 
   componentDidMount() {
     this.requestCategories();
-    this.setState({ cartItems: shoppinCart.getShoppingCart() });
+    this.setState({ cartItems: shoppinCart.getShoppingCart(),
+      query: localStorage.getItem('query'),
+      categoryId: localStorage.getItem('catId'),
+    }, () => {
+      const { query, categoryId } = this.state;
+      if (query || categoryId) this.getProducts(categoryId, query);
+    });
+  }
+
+  componentWillUnmount() {
+    const { query, categoryId } = this.state;
+    localStorage.setItem('query', query);
+    localStorage.setItem('catId', categoryId);
   }
 
   requestCategories = async () => {
@@ -90,7 +102,7 @@ export default class Search extends Component {
       const { cartItems } = this.state;
       const prod = { title, id, thumbnail, price, quantity: 1, availableQuantity };
       shoppinCart.addItem(prod);
-      const timeOut = 50;
+      const timeOut = 100;
       this.setState({ cartItems: [...cartItems, prod] }, () => {
         setTimeout(() => {
           this.setState({ glow: '' });
