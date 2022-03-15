@@ -20,9 +20,7 @@
 }
 
 .checked {
-
-  /* stylelint-disable-next-line declaration-no-important */
-  color: yellow ! important;
+  color: yellow;
 }
 
 .input-radio {
