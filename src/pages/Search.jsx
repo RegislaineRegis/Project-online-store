@@ -5,7 +5,7 @@ import CategoriesButtons from '../components/CategoryButtons';
 import Loading from '../components/Loading';
 import ProductCard from '../components/ProductCard';
 import Header from '../components/Header';
-// import '../styles/Buttons.css';
+import '../styles/Buttons.css';
 
 // Feito em pair programming com: Victor Reksidler, Pedro Henrique Moura, Regislaine Regis, Jaziel Silva, Débora Serra
 
@@ -20,14 +20,26 @@ export default class Search extends Component {
       categoryId: '',
       sort: '',
       cartItems: [],
-      showCat: true,
+      showCat: false,
       glow: '',
     };
   }
 
   componentDidMount() {
     this.requestCategories();
-    this.setState({ cartItems: shoppinCart.getShoppingCart() });
+    this.setState({ cartItems: shoppinCart.getShoppingCart(),
+      query: localStorage.getItem('query'),
+      categoryId: localStorage.getItem('catId'),
+    }, () => {
+      const { query, categoryId } = this.state;
+      if (query || categoryId) this.getProducts(categoryId, query);
+    });
+  }
+
+  componentWillUnmount() {
+    const { query, categoryId } = this.state;
+    localStorage.setItem('query', query);
+    localStorage.setItem('catId', categoryId);
   }
 
   requestCategories = async () => {
@@ -90,7 +102,7 @@ export default class Search extends Component {
       const { cartItems } = this.state;
       const prod = { title, id, thumbnail, price, quantity: 1, availableQuantity };
       shoppinCart.addItem(prod);
-      const timeOut = 50;
+      const timeOut = 100;
       this.setState({ cartItems: [...cartItems, prod] }, () => {
         setTimeout(() => {
           this.setState({ glow: '' });
@@ -99,6 +111,8 @@ export default class Search extends Component {
     });
   }
 
+  showCats = () => this.setState((prevSt) => ({ showCat: !prevSt.showCat }));
+
   render() {
     const { categories, loading, products, sort, cartItems, showCat, glow } = this.state;
     const buying = cartItems.reduce((acc, item) => acc + item.quantity, 0);
@@ -106,6 +120,13 @@ export default class Search extends Component {
       <div>
         <Header quantity={ buying } title="FrontEnd Masters" glow={ glow } />
         {loading && <Loading />}
+        <button
+          type="button"
+          onClick={ this.showCats }
+          className="cat-toggle-btn"
+        >
+          {showCat ? 'Ocultar' : 'Mostrar categorias'}
+        </button>
         {showCat && !loading && (
           <section className="buttons-sect">
             {categories.map((cat) => (

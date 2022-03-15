@@ -10,7 +10,7 @@
 
   --light-gray: rgba(225, 229, 235, 0.582);
 
-  --light-gray2: #5f5f5fa4;
+  --light-gray2: #5f5f5f83;
 
   --light-gray3: rgba(225, 229, 235, 0.781);
 
@@ -28,5 +28,4 @@
 body {
   background-color: var(--light-gray);
   color: var(--gray1);
-  margin: 50px;
 }

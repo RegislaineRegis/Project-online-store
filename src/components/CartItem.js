@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import '../styles/CartItems.css';
+import '../styles/CartItems.css';
 // import * as cartFunctions from '../services/saveShoppingCart';
 
 class CartItem extends Component {

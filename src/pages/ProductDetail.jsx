@@ -9,7 +9,7 @@ import ProdDetsHeader from '../components/ProdDetsHeader';
 import ImagesProdDets from '../components/ImagesProdDets';
 import ProdDetsButtons from '../components/ProdDetsButtons';
 import DetsTitle from '../components/DetsTitle';
-// import '../styles/ProductDetails.css';
+import '../styles/ProductDetails.css';
 
 export default class ProductDetail extends Component {
   constructor() {

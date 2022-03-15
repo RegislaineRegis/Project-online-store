@@ -136,6 +136,7 @@
   background-color: var(--light-yellow);
   border: none;
   border-radius: 5px;
+  color: var(--gray1);
   cursor: pointer;
   font-size: 1.2rem;
   font-weight: 600;
@@ -144,6 +145,11 @@
 
 .final-btn:hover, .clean-btn:hover {
   background-color: var(--yellow);
+}
+
+.checkout-link {
+  color: var(--gray1);
+  text-decoration: none;
 }
 
 @media screen and ( min-width : 1150px ) {

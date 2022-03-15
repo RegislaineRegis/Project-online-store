@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 
 export default class RatingStars extends Component {
   render() {
-    const { handleRateChange, rate } = this.props;
+    const { handleRateChange, rate, className } = this.props;
+    const checkClass = 'rate-label checked';
+    const noCheckClass = 'rate-label';
     const five = 5;
     const four = 4;
     const three = 3;
     const checkClass = 'rate-label checked';
     const noCheckClass = 'rate-label';
     return (
-      <fieldset className="rating" onChange={ handleRateChange }>
+      <fieldset className={ className } onChange={ handleRateChange }>
         <label
           className={ rate === five ? checkClass : noCheckClass }
           data-testid="5-rating"
@@ -97,6 +99,12 @@ export default class RatingStars extends Component {
 }
 
 RatingStars.propTypes = {
-  handleRateChange: PropTypes.func.isRequired,
+  handleRateChange: PropTypes.func,
   rate: PropTypes.number.isRequired,
+  className: PropTypes.string,
+};
+
+RatingStars.defaultProps = {
+  handleRateChange: null,
+  className: 'rating',
 };
