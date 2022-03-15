@@ -47,7 +47,7 @@ export default class ProductDetail extends Component {
     const { title, id, thumbnail, price, quantity, availableQuantity } = this.state;
     this.setState({ glow: 'glow' }, () => {
       shoppinCart.addItem({ title, id, thumbnail, price, quantity, availableQuantity });
-      const timeOut = 100;
+      const timeOut = 50;
       setTimeout(() => {
         this.setState({ cartItems: shoppinCart.getShoppingCart(),
           quantity: 1,
