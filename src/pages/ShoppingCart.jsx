@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import * as cartFunctions from '../services/saveShoppingCart';
 import CartItem from '../components/CartItem';
 import Loading from '../components/Loading';
@@ -125,7 +126,11 @@ export default class ShoppingCart extends Component {
                 <p>{`R$ ${newTotal}`}</p>
               </section>
               <section className="btn-sect">
-                <button className="final-btn" type="button">Finalizar compra</button>
+                <button className="final-btn" type="button">
+                  <Link to="/checkout" data-testid="checkout-products">
+                    Finalizar compra
+                  </Link>
+                </button>
                 <button className="clean-btn" type="button" onClick={ this.emptyCart }>
                   Esvaziar carrinho
                 </button>

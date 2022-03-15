@@ -68,8 +68,6 @@ export default class Search extends Component {
     this.setState({ sort: target.value }, () => this.sortProd());
   };
 
-  showCats = () => this.setState((prevSt) => ({ showCat: !prevSt.showCat }));
-
   sortProd = () => {
     const { products, sort } = this.state;
     let newList = products;
@@ -91,8 +89,8 @@ export default class Search extends Component {
 
   onClickAddProductCart = ({ title, id, thumbnail, price, availableQuantity }) => {
     this.setState({ glow: 'glow' }, () => {
-      const prod = { title, id, thumbnail, price, quantity: 1, availableQuantity };
       const { cartItems } = this.state;
+      const prod = { title, id, thumbnail, price, quantity: 1, availableQuantity };
       shoppinCart.addItem(prod);
       const timeOut = 50;
       this.setState({ cartItems: [...cartItems, prod] }, () => {
@@ -106,38 +104,28 @@ export default class Search extends Component {
   render() {
     const { categories, loading, products, sort, cartItems, showCat, glow } = this.state;
     const buying = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-    // const minIndex = 10;
     return (
       <div>
         <Header quantity={ buying } title="FrontEnd Masters" glow={ glow } />
         {loading && <Loading />}
-<<<<<<< Updated upstream
-        {/* <button
-=======
+
         <button
->>>>>>> Stashed changes
           type="button"
           onClick={ this.showCats }
           className="cat-toggle-btn"
         >
           {showCat ? 'Ocultar' : 'Mostrar mais categorias'}
-<<<<<<< Updated upstream
-        </button> */}
-=======
-        </button>
->>>>>>> Stashed changes
+        </button> 
         {showCat && !loading && (
           <section className="buttons-sect">
-            {!loading && (
-              categories.map((cat) => (
-                <CategoriesButtons
-                  key={ cat.id }
-                  id={ cat.id }
-                  category={ cat.name }
-                  handleClick={ this.handleClick }
-                />
-              ))
-            )}
+            {categories.map((cat) => (
+              <CategoriesButtons
+                key={ cat.id }
+                id={ cat.id }
+                category={ cat.name }
+                handleClick={ this.handleClick }
+              />
+            ))}
           </section>
         )}
         <section className="search-sect">
