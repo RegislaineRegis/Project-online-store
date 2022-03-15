@@ -86,13 +86,12 @@ export default class Search extends Component {
   }
 
   onClickAddProductCart = ({ title, id, thumbnail, price, availableQuantity }) => {
-    console.log(title)
     this.setState({ glow: 'glow' }, () => {
+      const { cartItems } = this.state;
       const prod = { title, id, thumbnail, price, quantity: 1, availableQuantity };
-      console.log('onClick', prod.quantity)
       shoppinCart.addItem(prod);
       const timeOut = 50;
-      this.setState({ cartItems: shoppinCart.getShoppingCart() }, () => {
+      this.setState({ cartItems: [...cartItems, prod] }, () => {
         setTimeout(() => {
           this.setState({ glow: '' });
         }, timeOut);
@@ -109,16 +108,14 @@ export default class Search extends Component {
         {loading && <Loading />}
         {showCat && !loading && (
           <section className="buttons-sect">
-            {!loading && (
-              categories.map((cat) => (
-                <CategoriesButtons
-                  key={ cat.id }
-                  id={ cat.id }
-                  category={ cat.name }
-                  handleClick={ this.handleClick }
-                />
-              ))
-            )}
+            {categories.map((cat) => (
+              <CategoriesButtons
+                key={ cat.id }
+                id={ cat.id }
+                category={ cat.name }
+                handleClick={ this.handleClick }
+              />
+            ))}
           </section>
         )}
         <section className="search-sect">
@@ -164,6 +161,7 @@ export default class Search extends Component {
                 <ProductCard
                   key={ product.id }
                   product={ product }
+                  handleClick={ this.onClickAddProductCart }
                   className={ cartItems
                     .some((item) => item.id === product.id)
                     ? 'prod-card selected' : 'prod-card' }

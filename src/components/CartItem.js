@@ -7,9 +7,6 @@ class CartItem extends Component {
   render() {
     const { product: { title, thumbnail, price, quantity, id } } = this.props;
     const total = price * quantity;
-    console.log('total', total)
-    console.log('price', price)
-    console.log('QTD', quantity)
     return (
       <section className="cart-item" id={ id }>
         <img className="cart-item-img" src={ thumbnail } alt={ title } />
