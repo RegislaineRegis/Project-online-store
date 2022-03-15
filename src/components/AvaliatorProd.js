@@ -46,6 +46,10 @@ export default class AvaliatorProd extends Component {
     const newEval = { id: Math.random(), prod: id, email, evalue, rate };
     saveEvaluations.saveEvaluation(id, newEval);
     this.setState((prevSt) => ({
+      rate: 0,
+      email: '',
+      evalue: '',
+      disabled: true,
       evaluations: [...prevSt.evaluations, newEval],
       saved: true,
     }));
@@ -53,7 +57,7 @@ export default class AvaliatorProd extends Component {
 
   handleChange = ({ target }) => {
     const { name, value } = target;
-    console.log(target);
+    console.log(target.name, target.value);
     this.setState({
       [name]: value,
     }, () => this.validationBtn());

@@ -118,7 +118,7 @@
 }
 
 .checked {
-
+  
   /* stylelint-disable-next-line declaration-no-important */
   color: gold ! important;
 }
