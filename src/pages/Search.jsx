@@ -5,7 +5,7 @@ import CategoriesButtons from '../components/CategoryButtons';
 import Loading from '../components/Loading';
 import ProductCard from '../components/ProductCard';
 import Header from '../components/Header';
-// import '../styles/Buttons.css';
+import '../styles/Buttons.css';
 
 // Feito em pair programming com: Victor Reksidler, Pedro Henrique Moura, Regislaine Regis, Jaziel Silva, Débora Serra
 
@@ -20,7 +20,7 @@ export default class Search extends Component {
       categoryId: '',
       sort: '',
       cartItems: [],
-      showCat: true,
+      showCat: false,
       glow: '',
     };
   }
@@ -82,6 +82,8 @@ export default class Search extends Component {
     this.setState({ products: newList });
   }
 
+  showCats = () => this.setState((prevSt) => ({ showCat: !prevSt.showCat }));
+
   searchProducts = () => {
     const { query, categoryId } = this.state;
     this.getProducts(categoryId, query);
@@ -109,13 +111,21 @@ export default class Search extends Component {
       <div>
         <Header quantity={ buying } title="FrontEnd Masters" glow={ glow } />
         {loading && <Loading />}
+<<<<<<< Updated upstream
         {/* <button
+=======
+        <button
+>>>>>>> Stashed changes
           type="button"
           onClick={ this.showCats }
           className="cat-toggle-btn"
         >
           {showCat ? 'Ocultar' : 'Mostrar mais categorias'}
+<<<<<<< Updated upstream
         </button> */}
+=======
+        </button>
+>>>>>>> Stashed changes
         {showCat && !loading && (
           <section className="buttons-sect">
             {!loading && (
