@@ -1,4 +1,4 @@
-Este projeto contém os requisitos realizados por _[Regislaine Fidelis Regis](https://www.linkedin.com/in/regislaine-regis/)_ enquanto estudava na [Trybe](https://www.betrybe.com/) :rocket:
+Este projeto conteúdos realizados por _[Regislaine Fidelis Regis](https://www.linkedin.com/in/regislaine-regis/)_ enquanto estudava na [Trybe](https://www.betrybe.com/) :rocket:
 
 # Project Online Store
 
