@@ -25,9 +25,10 @@ Front-end:
 > Desenvolvido usando: **CSS3**, **HTML5**, **JAVASCRIPT**, **REACT-ROUTER**, **METODOLOGIAS ÁGEIS**, **CICLO DE VIDA EM REACT**;
 
 
-Veja abaixo um exemplo do projeto:
+Veja abaixo um exemplo do projeto dividido em duas etapas:
+![gravacao-online-store-1](https://user-images.githubusercontent.com/94489726/200147950-dda2fb60-a3ac-4dc2-adcf-b354c5f1382a.gif)
 
-
+![gravacao-online-store-2 gif](https://user-images.githubusercontent.com/94489726/200148087-6d8651f0-eefd-4195-a4ea-0ed1bff78fc4.gif)
 
 ## Instalação do projeto localmente:
 
