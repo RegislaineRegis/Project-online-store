@@ -2,7 +2,7 @@ Este projeto conteúdos realizados por _[Regislaine Fidelis Regis](https://www.l
 
 # Project Online Store
 
-Primeiro projeto em grupo do curso, os desenvolvedores forão:
+Primeiro projeto em grupo do curso, os desenvolvedores foram:
 
 * [Regislaine Regis](https://github.com/RegislaineRegis)
 * [Débora Serra](https://github.com/DeboraSerra)
