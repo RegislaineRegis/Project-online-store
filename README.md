@@ -50,7 +50,7 @@ Após cada um dos passos, haverá um exemplo do comando a ser digitado para faze
   * Inicialize o projeto:
     * `npm start`
 
-Para evitar problemas de CORS, utilize a extensão Live Server do VSCode para conseguir carregar todos os assets externos, com o servidor rodando, abra o arquivo index.html, não é necessário rodar um npm install para ver a aplicação
+Para evitar problemas de CORS, utilize a extensão Live Server do VSCode para conseguir carregar todos os assets externos, com o servidor rodando, abra o arquivo index.html, é necessário rodar um npm install para ver a aplicação
 
 ## Habilidades Desenvolvidas
 
